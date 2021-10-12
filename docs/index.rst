@@ -3,25 +3,23 @@
 F5 Labs - Index
 =======================
 
-Welcome
+ようこそ！
 -------
 
-Welcome to the |classbold| lab.
+ようこそ、 |classbold| labへ
 
 
-Getting Started
+はじめに
 ---------------
 
-Please follow the instructions provided by the instructor to start your
-lab. If you're viewing this lab guide, you've likely already started your UDF Course.
-
+インストラクターより提供される手順に従ってラボを進めてください。
+すでにこのガイドを閲覧されている状況であれば、UDFの環境を実行しているかもしれません。
+   
 .. IMPORTANT::
-	 All work for this lab can be performed exclusively from the Windows
-	 jumphost. No installation or interaction with your local system is
-	 required. 
+    このラボのすべての作業はWindows Jumphost(RDP)から行います。皆様のローカルのシステムに対するインストールや操作は必要あありません
 
-Login to the "jumphost-1" UDF instance using the RDP Access method and the provided admin account.
-This might look slightly different in the UDF courses interface.
+"jumphost-1"というUDFインスタンスにRDPを使用し、adminアカウントでログインしてください。
+提供されるUDF環境によって画面のデザインが異なる場合がありますがご了承ください
 
    .. image:: ./class1/media/IntrojumpHostAccessMethod.png
       :width: 600
@@ -35,10 +33,10 @@ This might look slightly different in the UDF courses interface.
 Lab Topology
 ------------
 
-The following components are included in the lab environment:
+このラボ環境では主に以下のコンポーネントが実行されます：
 
 - 3 X NGINX Controller Instances (v3.x)
-- 1 X Postgres Database Instance (used for NGINX Controller)
+- 1 X Postgres Database Instance (NGINX Controllerで使用)
 - 3 X NGINX Plus Instances w/ agents installed (CentOS 7)
 - 1 X Application Servers (apps running in Docker on Ubuntu 18.04)
 - 1 X Windows Domain Controller (Windows 2019 Server)
@@ -48,8 +46,8 @@ The following components are included in the lab environment:
 NGINX Controller Credentials
 ----------------------------
 
-NGINX Controller is configured to perform authentication against the blueprint's
-Active Directory Domain Controller. In this lab, you will use the following accounts:
+NGINXコントローラーは、ActiveDirectoryドメインコントローラーに対して認証を実行するように構成されています。
+このラボでは、次のアカウントを使用します。
 
 .. list-table::
     :widths: 40 60 20 40
@@ -73,8 +71,7 @@ Active Directory Domain Controller. In this lab, you will use the following acco
       - ``Admin123!@#``
       - NA/Local User
 
-If using this blueprint outside of the lab and you'd like to explore NGINX Controller's RBAC implementation,
-the following other accounts are available:
+このラボ環境でNGINXコントローラのRBAC機能を調査したい場合、以下のアカウントをご利用ください
 
 .. list-table::
     :widths: 40 60 20 40
