@@ -200,7 +200,7 @@ Gatewayの作成
    .. image:: ./media/M2L1Place.png
       :width: 700
 
-#. **Hostnames** セクション配下で、指定のホスト名を追加してください(``http://echoapp.net``, ``https://echoapp.net``). それぞれのホスト名で、 **Match Method** は指定しないでください。"Cert Reference"で **echoapp.net** を選択してください。
+#. **Hostnames** セクション配下で、指定のホスト名を追加してください(``http://echoapp.net``, ``https://echoapp.net``). それぞれのホスト名で、 **Match Method** は指定しないでください。"Cert Reference"で **echoapp.net** を選択してください。ホスト名の追加操作が完了した場合、正しくそれぞれのメニュー右下部の"Done"をクリックしてください
    
    .. NOTE::
       You will need to use the **Add Hostname** link pictured below to add multiple hostnames.
@@ -226,7 +226,7 @@ Appを作成する
    .. image:: ./media/M2L1AppsCreate.png
       :width: 600
 
-#. Fill out the form and select the **Environment** from the drop-down.
+#. 以下の通り項目を埋め、ドロップダウンリストから **Environment** を選択してください
 
    +---------------------+------------------------------+
    |        Field        |      Value                   |
@@ -244,15 +244,15 @@ Appを作成する
    .. image:: ../media/Submit.png
       :width: 100
 
-Create a Component
+Componentを作成する
 ^^^^^^^^^^^^^^^^^^^
 
-#. Select the "Components" section followed by the "Create Component" button in center dialogue.
+#. "Components" セクションを選択し、画面中央の "Create Component" をクリックしてください
 
    .. image:: ./media/M2L1CreateComponent.png
       :width: 800
 
-#. Fill out the form and select the **Gateway Refs** from the drop-down.
+#. 以下の通り項目を埋め、ドロップダウンリストから **Gateway Refs** を選択してください
 
    +-------------------------+--------------------------+
    |        Field            |      Value               |
@@ -265,12 +265,12 @@ Create a Component
    .. image:: ./media/M2L1CompDiag.png
       :width: 700
 
-#. Under the **URIs** dialogue, add the URI "/". Do not specify a **Match Method**.
+#. **URIs** のセクションを開き、URIに "/" を指定します。**Match Method** は指定しないでください/
 
    .. image:: ./media/M2L1CompURI.png
       :width: 700
 
-#. Under the **Workload Groups** dialogue, fill out the form.
+#. **Workload Groups** のセクションを開き、以下の通り項目を埋めてください。Backend URIの指定、Workload Group双方の操作が完了した場合、正しくメニュー右下部の"Done"をクリックしてください
 
    +-------------------------+-----------------------------+
    |        Field            |      Value                  |
@@ -288,19 +288,19 @@ Create a Component
    .. image:: ../media/Submit.png
       :width: 100
 
-Test the Echo Application
+Echo Applicationのテスト
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. In Chrome on ``jumphost-1``, open a new tab and enable "Developer Tools". 
+#. ``jumphost-1``のクロームで新しいタブを開き、"Developer Tools"を有効にしてください 
 
    .. image:: ./media/M2L1DevTools.png
       :width: 900
 
-#. Browse to the App URLs you created earlier (``http://echoapp.net`` and ``https://echoapp.net``) to verify the "echo" application is functioning.
-   Select the **echoapp.net** request to view the results.
+#. 先程の手順で作成したURLに対し (``http://echoapp.net`` and ``https://echoapp.net``) ブラウザからアクセスし、Echo Applicationが機能していることを確認してください
+結果の確認のため **echoapp.net** をURLに入力いただくことで、結果の確認が可能です
 
    .. NOTE::
-      This simple web application will "echo" back information about the HTTP request it is responding to.
-
+      これはHTTP Requestの情報を返す、シンプルなWebアプリケーションです
+      
    .. image:: ./media/M2L1DevTools2.png
       :width: 800 
