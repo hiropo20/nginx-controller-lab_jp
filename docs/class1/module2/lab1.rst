@@ -1,8 +1,8 @@
 Lab 1 - GUIで ADC App の作成
 #######################################
 
-このラボのゴールはラボを実施する方がADCに関するNGINXコントローラのオブジェクトモデルやコンセプトを理解いただくことです。
-NGINXコントローラを用いた「app-centric(アプリケーション中心)」のモデルは、いわゆる旧来のLBで実施していた「network-centric(ネットワーク中心)」モデルとは別のデザインであり、NGINXの設定・構成をベースにしたデザインとなります
+このラボのゴールはラボを実施する方がADCに関するNGINX Controllerのオブジェクトモデルやコンセプトを理解いただくことです。
+NGINX Controllerを用いた「app-centric(アプリケーション中心)」のモデルは、いわゆる旧来のLBで実施していた「network-centric(ネットワーク中心)」モデルとは別のデザインであり、NGINXの設定・構成をベースにしたデザインとなります
 
 .. IMPORTANT::
     想定時間: 15分
@@ -14,7 +14,7 @@ NGINXコントローラを用いた「app-centric(アプリケーション中心
 
 NGINX Controller が持つ、オブジェクトのコンセプト
 ---------------------------------
-このセクションではNGINXコントローラのオブジェクトについて説明します。BIG_IPやNGINXのコンセプトや記述方法と比較してください
+このセクションではNGINX Controllerのオブジェクトについて説明します。BIG_IPやNGINXのコンセプトや記述方法と比較してください
 
    .. image:: ./media/M2L1ServOver.png
       :width: 600
@@ -64,19 +64,19 @@ BIG-IPの"pool"および個々の"pool member"に相当します
 
 Applicationをデプロイする
 -----------------------
-#. The jumphost should already have Chrome loaded with the controller UI at the login screen:
+#. jumphostのChromeで開かれているNGINX Controllerの管理画面を操作します。証明書エラーが表示されている場合には適切に操作をして画面を開いてください
 
    .. image:: ../media/ControllerLogin.png
       :width: 400
 
-#. If not, open Chrome Browser.
+#. もし開かれていない場合、Chromeブラウザを開いてください
 
-#. Access the NGINX Controller UI through the provided bookmark.
+#. BookmarkからNGINX Controller UIにアクセスしてください
 
    .. image:: ../media/ControllerBookmark.png
       :width: 600
 
-#. Login with the ``Peter Parker`` account who is an NGINX Controller admin.
+#. NGINX Controller のadmin accountである、``Peter Parker`` でログインしてください
 
    +-------------------------+-----------------+
    |      Username           |    Password     |
@@ -87,25 +87,25 @@ Applicationをデプロイする
    .. image:: ../media/ControllerLogin-Peter.png
       :width: 400
 
-#. Navigate to the **Services** section. The items or "tiles" under this menu will be used to create the configuration for this lab.
+#. **Services** を開いてください。このセクションおよび配下の項目がこのラボで必要となる設定を作成するために利用します
 
    .. image:: ../media/Tile-Services.png
       :width: 200
 
-Create an Environment
+Environmentを作成する
 ^^^^^^^^^^^^^^^^^^^^^^
 
-#. Select the "Environments" tile.
+#. "Environments" を選択してください.
 
    .. image:: ./media/M2L1EnvTile.png
       :width: 200
 
-#. Click the "Create" button in the upper right.
+#. 右上にある "Create" ボタンをクリックしてください
 
    .. image:: ./media/M2L1EnvCreate.png
       :width: 700
 
-#. Fill out the form.
+#. 以下の通り項目を埋めてください
 
    +---------------------+------------------------------+
    |        Field        |      Value                   |
@@ -118,26 +118,26 @@ Create an Environment
    .. image:: ./media/M2L1EnvDialogue.png
       :width: 700
 
-3. Click **Submit** to complete.
+#. **Submit** をクリックし、操作を完了させてください
 
    .. image:: ../media/Submit.png
       :width: 100
 
 
-Add a Certificate
+証明書の追加
 ^^^^^^^^^^^^^^^^^
 
-#. Select the "Certs" tile.
+#. "Certs" を選択してください
 
    .. image:: ./media/M2L1Certs.png
       :width: 200
 
-#. Click the "Create" button in the upper right.
+#. 右上にある "Create" ボタンをクリックしてください
 
    .. image:: ./media/M2L1CertCreate.png
       :width: 800
 
-#. Fill out the form and select the appropriate **Environment** from the drop-down. 
+#. 以下の通り項目を埋め、適切な **Environment** をドロップダウンリストから選択してください 
 
    +-----------------+----------------------------------+
    |        Field    |      Value                       |
@@ -150,12 +150,12 @@ Add a Certificate
    .. image:: ./media/M2L1CertDialogue1.png
       :width: 700
 
-#. Select the **Import PEM or PKC12** radio button and **Browse** for the cert and key.
+#. **Import PEM or PKC12** ラジオボタンを選択し、**Browse** から証明書と鍵を選択します
 
    .. image:: ./media/M2L1CertDialogue2.png
       :width: 700
 
-   The cert (**echoapp.net.crt**) and key (**echoapp.net.key**) can be found in **This PC -> Documents -> Certs** on "jumphost-1". 
+   証明書 (**echoapp.net.crt**) 鍵 (**echoapp.net.key**) をポップアップで表示される内容から選択してください ( **This PC -> Documents -> Certs** ) 
 
    .. NOTE::
       You will need to browse and upload the cert and key individually as Controller does not allow simultaneous file uploads.
@@ -163,26 +163,26 @@ Add a Certificate
    .. image:: ./media/M2L1Cert&Key.png
       :width: 700
 
-#. Click **Submit** to complete.
+#. **Submit** をクリックし、操作を完了させてください
 
    .. image:: ../media/Submit.png
       :width: 100
 
 
-Create a Gateway
+Gatewayの作成
 ^^^^^^^^^^^^^^^^^
 
-#. Select the "Gateways" tile.
+#. "Gateways" を選択してください
 
    .. image:: ./media/M2L1GatewayTile.png
       :width: 200
 
-#. Click the "Create" button in the upper right.
+#. 右上にある "Create" ボタンをクリックしてください
 
    .. image:: ./media/M2L1GWcreate.png
       :width: 600
 
-#. Under the **Configuration** dialogue, fill out the form. When finished click **Next** or click the name of the next section.
+#. **Configuration** セクションの内容を以下の通り項目を埋めてください。入力後、**Next** をクリックするか、次のセクションの名称をクリックしてください
 
    +---------------------+----------------------------------+
    |        Field        |      Value                       |
@@ -195,13 +195,12 @@ Create a Gateway
    .. image:: ./media/M2L1GWDialogue.png
       :width: 600
 
-#. Under the **Placements** dialogue, select the "Development NGINX West 03 (CAS)” Instance Ref.
+#. **Placements** セクション配下のInstance Ref で "Development NGINX West 03 (CAS)” を選択してください
 
    .. image:: ./media/M2L1Place.png
       :width: 700
 
-#. Under the **Hostnames** dialogue, add the specified hostnames (``http://echoapp.net``, ``https://echoapp.net``). Do not specify a **Match Method** for either hostname. 
-   Select the **echoapp.net** "Cert Reference".
+#. **Hostnames** セクション配下で、指定のホスト名を追加してください(``http://echoapp.net``, ``https://echoapp.net``). それぞれのホスト名で、 **Match Method** は指定しないでください。"Cert Reference"で **echoapp.net** を選択してください。
    
    .. NOTE::
       You will need to use the **Add Hostname** link pictured below to add multiple hostnames.
@@ -209,20 +208,20 @@ Create a Gateway
    .. image:: ./media/M2L1Hostnames.png
       :width: 700
 
-#. Click **Submit** to complete.
+#. **Submit** をクリックし、操作を完了させてください
 
    .. image:: ../media/Submit.png
       :width: 100
 
-Create an App
+Appを作成する
 ^^^^^^^^^^^^^
 
-#. Select the "Apps" tile.
+#. "Apps" を選択してください
 
    .. image:: ../media/Services-Apps.png
       :width: 200
 
-#. Click the "Create" button in the upper right.
+#. 右上にある "Create" ボタンをクリックしてください
 
    .. image:: ./media/M2L1AppsCreate.png
       :width: 600
@@ -240,7 +239,7 @@ Create an App
    .. image:: ./media/M2L1Appdiag.png
       :width: 800
 
-#. Click **Submit** to complete.
+#. **Submit** をクリックし、操作を完了させてください
 
    .. image:: ../media/Submit.png
       :width: 100
@@ -284,7 +283,7 @@ Create a Component
    .. image:: ./media/M2L1WGdiag.png
       :width: 600
 
-#. Click **Submit** to complete.
+#. **Submit** をクリックし、操作を完了させてください
 
    .. image:: ../media/Submit.png
       :width: 100
