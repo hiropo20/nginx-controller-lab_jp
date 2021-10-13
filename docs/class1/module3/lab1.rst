@@ -38,37 +38,33 @@ Dashboard概要
    .. image:: ../media/ControllerLogin-Peter.png
       :width: 400
 
-#. ログイン後、Dashboardの"Overview"が表示されます。
-Notice the "Overview" dashboard is displayed on login. The "System
-   Metrics" section, prominently located at the top of the "Overview", appeals to NetOps personas.
+#. ログイン後、Dashboardの"Overview"が表示されます。"System Metrics"セクションは、"Ovewview"の最上部に配置され、NetOps運用者が簡単に状態を把握することが可能となってます
 
    |Lab1MainDashboard|
 
 Instance Analytics
 -------------------
 
-#. Select the navigation bar in the upper left of the screen then select **Infrastructure** from the drop-down list.
+#. 画面左上のNavigation Barを選択し、表示されるドロップダウンリストから **Infrastructure** を選択してください
 
    .. image:: ../media/Tile-Infrastructure.png
       :width: 200
 
-#. From the list of Instances, click on **Production NGINX East 01**. 
-   This view is the "Instance Overview" page. Toggle the graphs
-   from **Bytes In**, **Bytes Out**, **CPU Usage** and **Memory Usage** by clicking on the tiles.
-
+#. 表示されるインスタンスのリストから、**Production NGINX East 01** をクリックしてください 
+   この画面は "Instance Overview" ページです。**Bytes In**、**Bytes Out**、**CPU Usage**、**Memory Usage** 等のメニューを選択し画面を切り替えてください
+   
    |Lab1InstanceSelection|
 
    |Lab1InstanceDashboard|
 
-   This section provides a single pane with all useful graphs for the selected instance.
-   Toggle the time ranges from the drop-down boxes to see the instance performance for a
-   particular time range.
+   このセクションは選択したインスタンスの状態をシングルペインで簡単に確認することが可能です
+   適切な時間でインスタンスのパフォーマンスがどの様になっているか確認するため、Time Rangeをドロップダウンリストから切り替えてください
 
    |Lab1InstanceAnalytics|
 
 .. IMPORTANT::
-   Though out of scope for this lab, please see the custom dashboard features under **Analytics -> Dashboards**.
-   Dashboard elements can include aggregated and filtered views of the hundreds of instance and application metrics collected by Controller.
+   このラボの対象外となりますが、**Analytics -> Dashboards** も合わせてご確認ください
+   NGINX Controllerによって集積される数百を超えるインスタンス・アプリケーションのメトリクスをDashboard elementとして表示することが可能です
 
 .. |Lab1MainDashboard| image:: media/Lab1MainDashboard.png
    :width: 800
