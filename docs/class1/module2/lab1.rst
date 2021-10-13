@@ -1,19 +1,20 @@
-Lab 1 - UI ADC App Creation
+Lab 1 - GUIで ADC App の作成
 #######################################
 
-The goal of this lab is to familiarize the student with the NGINX Controller object model and concepts regarding ADC services.
-The "app-centric" model used by Controller is a departure from both the BIG-IP's "network-centric" model and NGINX's config driven model.
+このラボのゴールはラボを実施する方がADCに関するNGINXコントローラのオブジェクトモデルやコンセプトを理解いただくことです。
+NGINXコントローラを用いた「app-centric(アプリケーション中心)」のモデルは、いわゆる旧来のLBで実施していた「network-centric(ネットワーク中心)」モデルとは別のデザインであり、NGINXの設定・構成をベースにしたデザインとなります
 
 .. IMPORTANT::
-    Estimated completion time: 15 minutes
+    想定時間: 15分
 
 .. NOTE::
-    Lab instructions are written as if the student is executing the steps
-    from the Windows jumphost -- ``jumphost-1``. See the :ref:`overview` for connection details.
+    このLabの手順はラボを実施する方がWindows jumphost -- ``jumphost-1`` から操作する手順を示しています。
+    接続方法についてはこちらを参照ください。 :ref:`overview` 
+
 
 Controller Object Model Concepts
 ---------------------------------
-This section will cover NGINX Controller objects and attempt to compare them with known BIG-IP and NGINX concepts and nomenclature.
+このセクションではNGINXコントローラのオブジェクトについて説明します。BIG_IPやNGINXのコンセプトや記述方法と比較してください
 
    .. image:: ./media/M2L1ServOver.png
       :width: 600
@@ -21,27 +22,28 @@ This section will cover NGINX Controller objects and attempt to compare them wit
 Environments
 ^^^^^^^^^^^^
 
-An "Environment" is a logical grouping of Apps. It's used as a top-level construct for Role Based Access Control.
-Environments are organizational in nature, therefore the concept is not represented in NGINX config deployed to managed NGINX Plus instances.
-Conceptually, an environment is similar to a BIG-IP administrative partition.
+"Environment"は論理的なAppのグループです。これはRBAC(Role Based Access Control)の最上位の構成要素として利用されます
+Environmentsは組織や構成管理の観点で利用されるものであり、実際に管理対象となるNGINX Plusインスタンスにデプロイされるコンフィグ上には表現されません。
+概念的には、BIG-IPのパーティションに似たものとなります。
 
 Cert
 ^^^^
 
-SSL certificates and keys are stored in a centralized Controller repository. 
-They can then be assigned to specific "Gateways" as needed by the requested configuration.
+SSL証明書と鍵をNGINX Controllerで一元的に管理・保存します。
+これらは"Gateway"の機能に割り当てることが可能であり、設定に応じて利用します。
 
 Gateway
 ^^^^^^^
 
-A "Gateway" is a collection of NGINX config directives deployed to a target NGINX Plus instance. 
-This includes an FQDN for ingress, allowed HTTP methods, SSL/TLS config, and some advanced HTTP parameters (buffers, body size, TCP keepalives). 
-These directives would be found in the "server" block of an NGINX config. 
-There are several overlapping BIG-IP concepts found in TCP, HTTP, and ClientSSL profiles. 
+"Gateway"は対象となるNGINX PlusインスタンスにデプロイするNGINX Config / Directiveに相当します
+この機能では、待ち受けるFQDN、許可するHTTPメソッド、SSL/TLS設定、その他様々なHTTP Parameter(buffer , body size , TCP keepalive)が含まれます。
+これらの設定は、対象となるNGINX Configの"server" directive配下に表記される情報となります。
+BIG-IPのTCP / HTTP / ClientSSL Profile等に相当する設定です
 
 App
 ^^^
 
+"App"はマイクロサービス環境で動作する *すべての* アプリケーションの要素を論理的にまとめたグループです。
 An "App" is the logical grouping of "Components" that represent the *whole* application in a microservices architecture.
 Each "Component" in an "App" represents an individual microservice. 
 As the object is a logical grouping, it's not represented in an NGINX Plus instances config.
