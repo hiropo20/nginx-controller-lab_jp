@@ -1,4 +1,4 @@
-Lab 1 - NetOps/Adminm向けのAnalytics 
+Lab 1 - NetOps/Adminm向けAnalytics 
 ############################################
 
 このラボのゴールはNGINX Controllerが提供するNGINX Plus instanceの統計状況を確認することです。
