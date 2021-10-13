@@ -12,7 +12,7 @@ NGINXコントローラを用いた「app-centric(アプリケーション中心
     接続方法についてはこちらを参照ください。 :ref:`overview` 
 
 
-Controller Object Model Concepts
+NGINX Controller が持つ、オブジェクトのコンセプト
 ---------------------------------
 このセクションではNGINXコントローラのオブジェクトについて説明します。BIG_IPやNGINXのコンセプトや記述方法と比較してください
 
@@ -44,27 +44,25 @@ App
 ^^^
 
 "App"はマイクロサービス環境で動作する *すべての* アプリケーションの要素を論理的にまとめたグループです。
-An "App" is the logical grouping of "Components" that represent the *whole* application in a microservices architecture.
-Each "Component" in an "App" represents an individual microservice. 
-As the object is a logical grouping, it's not represented in an NGINX Plus instances config.
-Analogous BIG-IP family concepts include an AS3 tenant or a BIG-IQ "Application".
+"App"に含まれるそれぞれの"Component"が各マイクロサービスを示します。
+これらは論理的なグループを示しており、NGINX Plusインスタンスの設定情報を示すものではありません。
+BIG-IPファミリのコンセプトでは、AS3のテナントや、BIG-IQの"Application"に相当します。
 
 Component
 ^^^^^^^^^
 
-A "Component" is the most basic representation of a single service. This includes URIs for ingress, a "Workload Group" to determine 
-where backend traffic should be routed, HTTP manipulation rules (redirects, rewrites, header manipulation), logging config, etc.
-Similar BIG-IP concepts include a "Virtual Server", a "Pool", limited features from "HTTP Profiles", "Local Traffic Policies", and "iRules".    
+"Component"は単一のサービスを示す最も基本的な表現です。これは通信を待ち受けるためのURIなどの情報を含み、分散先サーバである"Workload Group"等を管理し、
+トラフィックの転送先、HTTPの操作に関する情報(redirect, rewrite, header 操作)、ロギング設定などを指定します
+BIG-IPのVS、Poolや、HTTP Profile、Local Traffic PolicyやiRuleの一部の機能に該当します
 
 
 Workload Group
 ^^^^^^^^^^^^^^
 
-A "Workload Group" is a collection of backend servers. NGINX config references this concept as an "upstream".
-In BIG-IP terminology the group would be a "pool" and the individual members "pool members".
+"Workload Group"はバックエンドサーバをまとめたグループです。NGINX Configでは"upstream"でこの内容を記述します。
+BIG-IPの"pool"および個々の"pool member"に相当します
 
-
-Deploy an Application
+Applicationをデプロイする
 -----------------------
 #. The jumphost should already have Chrome loaded with the controller UI at the login screen:
 
