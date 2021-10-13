@@ -1,32 +1,33 @@
-Lab 2 - Analytics for DevOps/Developer
+Lab 2 - DevOps/Developer向けAnalytics
 ################################################
 
-The goal of this lab is to demonstrate the rich app and WAF analytics provided by Controller when the Controller App Security (CAS) is licensed and enabled.
-This category of analytics will be of interest for DevOps and Developer personas who are responsible for individual Apps/Components.
+このラボのゴールは
+Controller App Security (CAS)のライセンスが有効な場合に、NGINX Controllerが提供するアプリケーションやWAFの分析結果を確認することです。
+このAnalyticsのカテゴリは主に個々のアプリケーションやコンポーネントを管理するDevOps、開発の担当者向けとなります
 
 .. IMPORTANT::
-    Estimated completion time: 5 minutes
+    想定時間: 5分
 
 .. NOTE::
-    Lab instructions are written as if the student is executing the steps
-    from the Windows jumphost -- ``jumphost-1``. See the :ref:`overview` for connection details.
+    このLabの手順はラボを実施する方がWindows jumphost -- ``jumphost-1`` から操作する手順を示しています。
+    接続方法についてはこちらを参照ください。 :ref:`overview` 
 
-Overview Dashboard
---------------------
+Dashboard概要
+-------------------
 
-#. The jumphost should already have Chrome loaded with the controller UI at the login screen:
+#. jumphostのChromeで開かれているNGINX Controllerの管理画面を操作します。証明書エラーが表示されている場合には適切に操作をして画面を開いてください
 
    .. image:: ../media/ControllerLogin.png
       :width: 400
 
-#. If not, open Chrome Browser.
+#. もし開かれていない場合、Chromeブラウザを開いてください
 
-#. Access the NGINX Controller UI through the provided bookmark.
+#. BookmarkからNGINX Controller UIにアクセスしてください
 
    .. image:: ../media/ControllerBookmark.png
       :width: 600
 
-#. Login with the ``Natasha Romanoff`` account who is an (unprivileged) NGINX Controller user.
+#. NGINX Controller の特権を持たないuser accountである、``Natasha Romanoff`` でログインしてください
 
    +---------------------------+-------------------+
    |      Username             |    Password       |
@@ -37,61 +38,60 @@ Overview Dashboard
    .. image:: ../media/ControllerLogin-Natasha.png
       :width: 400
 
-#. Notice the "Overview" dashboard is displayed on login. 
-   The "Application Metrics" section within the default dashboard will be of
-   interest to DevOps or Developer personas.
+#. Nログイン後、Dashboardの"Overview"が表示されます。 
+   "Application Metrics"のセクションは標準でDashboardに含まれる項目であり、DevOps、開発の担当者が簡単に状態を把握することが可能となってます
 
    |Lab2MainDashboard|
 
 Critical Analytics
 --------------------
 
-#. Select the navigation bar in the upper left of the screen then select **Infrastructure** from the drop-down list.
+#. 画面左上のNavigation Barを選択し、表示されるドロップダウンリストから **Infrastructure** を選択してください
 
    .. image:: ../media/Tile-Infrastructure.png
       :width: 200
 
-#. From the list of Instances, verify the **Development NGINX West 03 (CAS)**
-   instance is available. The infrastructure team has configured this NGINX Plus instance
-   with NGINX App Protect (WAF).
+#. 表示されるインスタンスのリストから、**Production NGINX East 03 (CAS)** をクリックしてください 
+   インフラチームにより、NGINX App Protect (WAF) のモジュールを有効にしたNGINX Plus Insntanceが設定されています
 
    |image4|
 
    .. NOTE::
-      The NGINX Controller instance used in this lab includes a license enabled "Controller Application Security (CAS)". 
+      NGINX Controller insntaceはこのラボで"Controller Application Security (CAS)"を利用しています
 
-#. Navigate to the **Services** menu.
+#.  画面左上のNavigation Barを選択し、表示されるドロップダウンリストから**Services**を開きます
 
    .. image:: ../media/Tile-Services.png
       :width: 200
 
-#. Select the **Apps** tile.
+#. **Apps** を選択してください
 
    .. image:: ../media/Services-Apps.png
       :width: 200
 
-#. Open the **Trading Application (CAS)** app. The "Analytics" sections presented 
-   here are "roll up" views of data from all "Components" of the "App". 
+#. **Trading Application (CAS)** appを開いてください。"Analytics" セクションは"App"に含まれるすべての"Components"のデータをここに表示します
 
    .. image:: ./media/M3L2TradingRollup.png
       :width: 200
 
-#. In this lab we want to view analytics data drilled down to the "Component" level. Select the **Components** section. 
-   Notice the DevOps/Developers who own the "App" have permissions to enable/disable WAF (recall you are logged in as "Natasha" -- a member of "nginx-controller-users"). 
-   
+#. このラボでは、"Component"のレベルまでAnalyticsのデータをドリルダウンしたいと思います。
+   **Components** セクションを選択します。DevOps、開発の担当者が管理するAppに対し、WAFポリシーを有効・向こうにする権限があることを確認してください
+   ("Natasha"でログインしたことを思い出してください)
+
+
    |image6|
 
    .. NOTE:: 
-      Controller allows a self-service approach for enabling WAF to protect configured apps.
-
-#. Click **Trading Main Component** and select
-   **Critical Analytics** from the left navigation. In the **Breakout By** drop-down box (upper right)
-   select **Request Outcome Reason**. Scroll down the page and note the "HTTP Requests (SUM)" graph located towards the bottom. 
+      NGINX Controllerは設定したappに対し、self-serviceでWAFの有効・無効機能を提供しています
+      
+#. **Trading Main Component** をクリックし、**Critical Analytics** を左のナビゲーションから選択してください。
+   右上の**Breakout By** のドロップダウンリストから **Request Outcome Reason** を選択してください。
+   画面を下部へスクロールし、"HTTP Requests (SUM)" のグラフを確認ください
    
    |image7|
 
    .. NOTE::
-      Without CAS enabled, this graph would only include "all" requests. In the next module, we will explore the CAS feature.
+      CAS が有効でない場合、このグラフは"すべて"のリクエストを含むのみとなります。次のモジュールでは、CASの機能を確認します
 
 .. |Lab2MainDashboard| image:: media/Lab2MainDashboard.png
    :width: 800
