@@ -1,32 +1,33 @@
-Lab 1 - Analytics for NetOps/Admin
+Lab 1 - NetOps/Adminm向けのAnalytics 
 ############################################
 
-The goal of this lab is to explore NGINX Plus instance statistics provided by NGINX Controller.
-This category of analytics will be of interest to an organization's NetOps personas.
+このラボのゴールはNGINX Controllerが提供するNGINX Plus instanceの統計状況を確認することです。
+このAnalyticsのカテゴリは主にNetOpsの担当者向けとなります
 
 .. IMPORTANT::
-    Estimated completion time: 5 minutes
+    想定時間: 5分
 
 .. NOTE::
-    Lab instructions are written as if the student is executing the steps
-    from the Windows jumphost -- ``jumphost-1``. See the :ref:`overview` for connection details.
+    このLabの手順はラボを実施する方がWindows jumphost -- ``jumphost-1`` から操作する手順を示しています。
+    接続方法についてはこちらを参照ください。 :ref:`overview` 
 
-Overview Dashboard
+
+Dashboard概要
 -------------------
 
-#. The jumphost should already have Chrome loaded with the controller UI at the login screen:
+#. jumphostのChromeで開かれているNGINX Controllerの管理画面を操作します。証明書エラーが表示されている場合には適切に操作をして画面を開いてください
 
    .. image:: ../media/ControllerLogin.png
       :width: 400
 
-#. If not, open Chrome Browser.
+#. もし開かれていない場合、Chromeブラウザを開いてください
 
-#. Access the NGINX Controller UI through the provided bookmark.
+#. BookmarkからNGINX Controller UIにアクセスしてください
 
    .. image:: ../media/ControllerBookmark.png
       :width: 600
 
-#. Login with the ``Peter Parker`` account who is an NGINX Controller admin.
+#. NGINX Controller のadmin accountである、``Peter Parker`` でログインしてください
 
    +-------------------------+-----------------+
    |      Username           |    Password     |
@@ -37,7 +38,8 @@ Overview Dashboard
    .. image:: ../media/ControllerLogin-Peter.png
       :width: 400
 
-#. Notice the "Overview" dashboard is displayed on login. The "System
+#. ログイン後、Dashboardの"Overview"が表示されます。
+Notice the "Overview" dashboard is displayed on login. The "System
    Metrics" section, prominently located at the top of the "Overview", appeals to NetOps personas.
 
    |Lab1MainDashboard|
