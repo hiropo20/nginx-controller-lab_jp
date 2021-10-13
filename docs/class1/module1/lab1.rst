@@ -1,34 +1,34 @@
 Lab 1 - Active Directory Authentication
 #################################################
 
-The goal of this lab is to explore the pre-configured Active Directory authentication
-and role based access control configuration. Students will view the existing configuration without making changes.
+このラボではActivce Directory認証で設定されている内容とRole Based Access Controlの設定に追加確認します。
+設定変更は行わず、設定済みの内容を確認します。
 
-This feature enables organizations to use their existing Authentication process to integrate with NGINX Controller.
+この機能により組織の既存環境で利用している認証のプロセスをNGINX Controllerに統合することが可能です
 
 .. IMPORTANT::
-    Estimated completion time: 5 minutes
+    想定時間: 5分
 
 .. NOTE::
-    Lab instructions are written as if the student is executing the steps
-    from the Windows jumphost -- ``jumphost-1``. See the :ref:`overview` for connection details.
+    このLabの手順はラボを実施する方がWindows jumphost -- ``jumphost-1`` から操作する手順を示しています。
+    接続方法についてはこちらを参照ください。 :ref:`overview` 
 
-Access the Authentication Providers Configuration
+Authentication Providersの設定を確認する
 --------------------------------------------------
 
-#. The jumphost should already have Chrome loaded with the controller UI at the login screen:
+#. jumphostのChromeで開かれているNGINX Controllerの管理画面を操作します。証明書エラーが表示されている場合には適切に操作をして画面を開いてください
 
    .. image:: ../media/ControllerLogin.png
       :width: 400
 
-#. If not, open Chrome Browser.
+#. もし開かれていない場合、Chromeブラウザを開いてください
 
-#. Access the NGINX Controller UI through the provided bookmark.
+#. BookmarkからNGINX Controller UIにアクセスしてください
 
    .. image:: ../media/ControllerBookmark.png
       :width: 600
 
-#. Login with the ``Peter Parker`` account who is an NGINX Controller admin.
+#. NGINX Controller のadmin accountである、``Peter Parker`` でログインしてください
 
    +-------------------------+-----------------+
    |      Username           |    Password     |
@@ -39,17 +39,17 @@ Access the Authentication Providers Configuration
    .. image:: ../media/ControllerLogin-Peter.png
       :width: 400
 
-#. Select the navigation bar in the upper left of the screen then select **Platform** from the drop-down list.
+#. 画面左上のナビゲーションバーを開き、ドロップダウンリストから **Platform** を選択してください
 
    .. image:: ../media/Tile-Platform.png
       :width: 200
 
-#. Navigate to the **Auth Providers** tile.
+#. **Auth Providers** を開いてください
 
    .. image:: ./media/M1L1AuthProviders.png
       :width: 800
 
-#. View the configuration of the ``ad-acmefinancial-net`` provider by clicking **Edit**.
+#. **Edit** をクリックし、``ad-acmefinancial-net`` の設定を確認してください 
 
    .. image:: ./media/M1L1ProviderEdit.png
       :width: 800
