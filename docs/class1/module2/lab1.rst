@@ -296,8 +296,7 @@ Echo Applicationのテスト
    .. image:: ./media/M2L1DevTools.png
       :width: 900
 
-#. 先程の手順で作成したURLに対し (``http://echoapp.net`` and ``https://echoapp.net``) ブラウザからアクセスし、Echo Applicationが機能していることを確認してください
-結果の確認のため **echoapp.net** をURLに入力いただくことで、結果の確認が可能です
+#. 先程の手順で作成したURLに対し (``http://echoapp.net`` and ``https://echoapp.net``) ブラウザからアクセスし、Echo Applicationが機能していることを確認してください。結果の確認のため **echoapp.net** をURLに入力いただくことで、結果の確認が可能です
 
    .. NOTE::
       これはHTTP Requestの情報を返す、シンプルなWebアプリケーションです
