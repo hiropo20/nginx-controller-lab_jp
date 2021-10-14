@@ -265,7 +265,7 @@ Componentを作成する
    .. image:: ./media/M2L1CompDiag.png
       :width: 700
 
-#. **URIs** のセクションを開き、URIに "/" を指定します。**Match Method** は指定しないでください/
+#. **URIs** のセクションを開き、URIに ``/`` を指定します。**Match Method** は指定しないでください/
 
    .. image:: ./media/M2L1CompURI.png
       :width: 700
@@ -291,7 +291,7 @@ Componentを作成する
 Echo Applicationのテスト
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. ``jumphost-1``のクロームで新しいタブを開き、"Developer Tools"を有効にしてください 
+#. ``jumphost-1`` のクロームで新しいタブを開き、"Developer Tools"を有効にしてください 
 
    .. image:: ./media/M2L1DevTools.png
       :width: 900
