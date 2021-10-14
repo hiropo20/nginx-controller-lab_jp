@@ -1,34 +1,33 @@
-Lab 2 - NGINX Controller Resiliency
+Lab 2 - NGINX Controller の冗長化
 ############################################
 
-The goal of this lab is to add another host as a third member to an NGINX Controller cluster.
+このラボのゴールはNGINX Controller clusterの3つ目のメンバーとしてホストを追加することです
 
-In production it is common to want resiliency to our services. With Controller that is achieved by horizontal scaling / running multiple instances, just in the case one was to fail for any reason.  Resilient deployments can also be required as part of compliance or regulatory requirements. This capability enables running multiple Controllers with ease.
+本番環境では、我々のサービスに対し冗長性をもたせることが一般的です。複数のインスタンスを水平スケール・動作の管理を行うNGINX Controllerを用いた場合、単一の事象が様々な事象の引き金となることがあります。冗長構成の実装はコンプライアンスやルールの要素としても求められることがあります。この機能により複数のコントローラを用いて安定した環境を実現します
 
 .. IMPORTANT::
-   - Estimated completion time: 15 minutes
+    想定時間: 15分
 
 .. NOTE::
-     Lab instructions are written as if the student is executing the steps
-     from the Windows jumphost -- ``jumphost-1``. See the :ref:`overview` for connection details.
+    このLabの手順はラボを実施する方がWindows jumphost -- ``jumphost-1`` から操作する手順を示しています。
+    接続方法についてはこちらを参照ください。 :ref:`overview` 
 
-
-Create an additional NGINX Controller Node
+追加するNGINX Controllerのノードを作成する
 ------------------------------------------
 
-#. The jumphost should already have Chrome loaded with the controller UI at the login screen:
+#. jumphostのChromeで開かれているNGINX Controllerの管理画面を操作します。証明書エラーが表示されている場合には適切に操作をして画面を開いてください
 
    .. image:: ../media/ControllerLogin.png
       :width: 400
 
-#. If not, open Chrome Browser.
+#. もし開かれていない場合、Chromeブラウザを開いてください
 
-#. Access the NGINX Controller UI through the provided bookmark.
+#. BookmarkからNGINX Controller UIにアクセスしてください
 
    .. image:: ../media/ControllerBookmark.png
       :width: 600
 
-#. Login with the ``Peter Parker`` account who is an NGINX Controller admin.
+#. NGINX Controller のadmin accountである、``Peter Parker`` でログインしてください
 
    +-------------------------+-----------------+
    |      Username           |    Password     |
@@ -39,41 +38,40 @@ Create an additional NGINX Controller Node
    .. image:: ../media/ControllerLogin-Peter.png
       :width: 400
 
-#. Navigate to the **Platform** section.
+#. 画面左上のナビゲーションバーを開き、ドロップダウンリストから **Platform** を選択してください
 
    .. image:: ../media/Tile-Platform.png
       :width: 200
 
-#. Open the **Cluster** tile.
+#. **Cluster** を開いてください
 
    .. image:: ./media/M1L2ClusterTile.png
       :width: 800
 
-#. View the current "Cluster Configuration".
+#. 現在の "Cluster Configuration" を確認してください
 
    .. image:: ./media/M1L2ClusterConfig.png
       :width: 800
 
 .. NOTE::
-     The "Cluster Configuration" section indicates this Controller instance is part of a cluster.
-     The "FQDN" is used as the common name for the cert applied to API Gateway pod -- 
-     ie. the service that exposes API endpoints and the UI.
+     "Cluster Configuration" の項目は、クラスタを構成するNGINX Controllerインスタンスを示します。
+     FQDNはAPI Gateway podに割り当てる証明書で利用するcommon nameに該当します
+     例: APIエンドポイントやGUIの接続先として公開するサービスの名称
 
 .. IMPORTANT::
-      The "load balancer" option will be configurable in a future Controller release.
-      See this lab's Additional :ref:`Reference` for more details.
+    "load balancer"設定は今後リリースされるNGINX Controllerにて設定可能となる予定です
+    追加の情報はラボの :ref:`Reference` を参照してください
 
 .. NOTE::
-      The "Nodes" section shows the cluster currently has 2 Controller instances -- 
-      "ip-10-1-1-5.us-west-2.compute.internal" (or the "controller-1" UDF instance where you are logged in)
-      and the UDF instance "controller-2". 
+    "Nodes"として現在2つのNGINX Controller インスタンスが表示されています
+    ( "controller-1" および "controller-2" に該当するノード)
 
-#. Click the **Create Node** button in the upper right.
+#. 画面右上の **Create Node** ボタンをクリックしてください
 
    .. image:: ./media/M1L2CreateNodeButton.png
       :width: 200
 
-#. Walk through the dialogue to add the "controller-3" UDF instance by specifying a "Name" and the "Hostname or IP Address".
+#. ダイアログに従って進め、"controller-3" インスタンスを追加するため、"Name" と "Hostname または IP Address" を指定してください
    Click the **Save** button.
 
    +-------------------+-----------------------+
@@ -87,7 +85,7 @@ Create an additional NGINX Controller Node
    .. image:: ./media/M1L2CreateNodeDialogue.png
       :width: 800
 
-#. **View** the installation instructions. Copy the install command and "join key" to your clipboard. 
+#. **View** にインストール手順が記載されています。インストールコマンドと "join key" をクリップボードにコピーしてください。 
 
    .. image:: ./media/M1L2NodeViewButton.png
       :width: 800
@@ -98,16 +96,16 @@ Create an additional NGINX Controller Node
 Run the install command to join the instance to the cluster
 -----------------------------------------------------------
 
-#. Login to the "controller-3" instance. Using "PuTTY" select the **controller-3** saved session and then click **Open**.
+#. "controller-3" インスタンスにログインしてください。"PuTTY" を開き、保存済みのホストより **controller-3** を選択し、**Open** をクリックしてください
 
    .. image:: ./media/M1L2puttyc3.png
       :width: 400
 
    .. IMPORTANT::
-      If you receive a PuTTY warning regarding the server's host key click **Yes** to connect.
-      This is caused by a unique host key being generated for each UDF deployment.
+      もし、Puttyがサーバのホスト鍵に関する警告を示した場合、接続のため **Yes** をクリックしてください
+      これは、ラボ環境の各ホストでユニークなhost keyを生成するため生じるものです
 
-#. Execute the install.sh command from the installer directory. Answer "y" (ie. "yes") to the prompts.
+#. installerディレクトリより、install.sh コマンドを実行してください。そしてプロンプトの表示に対し "y" ("yes" の意味) を入力してください
 
    .. code-block:: bash
 
@@ -117,7 +115,7 @@ Run the install command to join the instance to the cluster
    .. image:: ./media/M1L2InstallCommand.png
       :width: 800
 
-   #. The result of the command should eventually show the node was successfully joined to the cluster.
+#. コマンドの実行結果として、クラスタに追加が完了したことがノードに表示されます
 
    .. image:: ./media/M1L2NodeJoinSuccess.png
       :width: 300
@@ -125,27 +123,26 @@ Run the install command to join the instance to the cluster
 View the results
 ----------------
 
-#. In Chrome, view the "Cluster Configuration" from the **Cluster** tile.
+#. Chromeを開き、**Cluster** の "Cluster Configuration" を確認してください
 
    .. image:: ./media/M1L2NodesConfigured.png
       :width: 800
 
-(Optional) Explore the Kubernetes Cluster
+(Optional) Kubernetes Cluster の確認
 ------------------------------------------
 
-If you're familiar with Kubernetes (k8s), you can look at the k8s cluster created by NGINX Controller for resiliency purposes.  
+もし、Kubernetes (k8s) について確認されたい場合、NGINX Controllerによって作成される k8s クラスタの情報を書く飲することが可能です
 
-#. Use your existing PuTTY session to "controller-3" or create a new session to one of the Controller instances. 
+#. 先程ログインした PuTTY の "controller-3" への接続を利用するか、新たにNGINX Controllerインスタンスのいずれか一つに接続してください
 
    .. image:: ./media/M1L2puttyc1.png
       :width: 400
 
    .. IMPORTANT::
-      If you receive a PuTTY warning regarding the server's host key click **Yes** to connect.
-      This is caused by a unique host key being generated for each UDF deployment.
+      もし、Puttyがサーバのホスト鍵に関する警告を示した場合、接続のため **Yes** をクリックしてください
+      これは、ラボ環境の各ホストでユニークなhost keyを生成するため生じるものです
 
-
-#. View the cluster nodes.
+#. クラスタノードを表示します
 
    .. code-block:: shell
 
@@ -155,10 +152,9 @@ If you're familiar with Kubernetes (k8s), you can look at the k8s cluster create
       :width: 800
 
    .. NOTE::
-      The command's output shows there are three nodes in this k8s cluster.
+      コマンドの出力結果として、k8s クラスタに3つのノードが存在することが確認できます
 
-
-#. View the deployed pods.
+#. デプロイされたポッドを確認する
 
    .. code-block:: shell
 
@@ -168,16 +164,20 @@ If you're familiar with Kubernetes (k8s), you can look at the k8s cluster create
       :width: 1024
 
    .. NOTE::
-      The command's output shows Controller's several pods are distributed among the three nodes (the "NODE" column).
-
+      コマンドの出力結果として、NGINX Controllerが複数のPodを3つのノードに対してデプロイしていることが確認できます
+      ("NODE"カラムを確認ください)
 
 .. _Reference:
 
-Additional Reference
+追加情報
 --------------------
-Future NGINX Controller releases will allow for the creation of a floating self-ip by adding a "load balancer" to the
-exposed API Gateway ("apigw") Kubernetes service. For on-premise installations `MetalLB`_ handle L2 failover. 
-For cloud installations a k8s service with type `LoadBalancer`_, resulting in a cloud native external load balancer, will be used.
+    "load balancer"設定は今後リリースされるNGINX Controllerにて設定可能となる予定です
+    追加の情報はラボの :ref:`Reference` を参照してください
+      The "load balancer" option will be configurable in a future Controller release.
+      See this lab's Additional :ref:`Reference` for more details.
+      
+将来リリースされるNGINX Controllerでは、API Gateway Kubernetes serviceを公開するために利用するfloating self-ipが "load balancer" によって作成される予定です。
+オンプレミス環境ではL2 Failoverをサポートする `MetalLB`_ の構成、クラウド環境では k8sの type  `LoadBalancer`_を用いたクラウドネイティブな外部向けロードバランサー機能を利用する想定となります。
 
 .. _MetalLB: https://metallb.universe.tf/
 .. _LoadBalancer: https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer
