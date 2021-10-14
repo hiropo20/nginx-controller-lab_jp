@@ -54,17 +54,17 @@ Authentication Providersの設定を確認する
    .. image:: ./media/M1L1ProviderEdit.png
       :width: 800
 
-Inspect the Authentication Provider Configuration
+Authentication Provider の設定を確認する
 --------------------------------------------------
 
-In this section, students will walk through the "Authentication Provider Configuration" tabs.
-Click the tab for the relevant area.
+このセクションでは、"Authentication Provider Configuration"タブを確認します。
+関連する項目をクリックしてください
 
 .. image:: ./media/M1L1ADwalkthrough.png
 
-#. **Configuration** tab
+#. **Configuration** タブ
 
-   This section defines the basic settings for the authentication provider.  The required parameters are:
+   この項目は、基本的な authentication providerの設定を定義します。必要となるパラメータは以下です:
 
    +--------------------+---------------------------------------------------------------------------------------+
    | Attribute          | Description                                                                           |
@@ -75,65 +75,61 @@ Click the tab for the relevant area.
    +--------------------+---------------------------------------------------------------------------------------+
 
    .. NOTE::
-      As of release 3.15, Active Directory is currently the only supported Auth Provider Type.
-
+      release 3.15 では、Active DirectoryのみをAuth Providerとして選択することが可能です
 
    .. image:: ./media/M1L1ProviderConfig.png
       :width: 800
 
-#. **Connection** tab
+#. **Connection** タブ
 
-   This section is used to specify the Domain, URL, and SSL settings.  
-
+   このセクションはDomain、URL、SSLの設定を行います
+   
    .. NOTE::
-        There is no option under **SSL Parameters** to allow for an unencrypted connection. 
+        **SSL Parameters** 配下に暗号化なしの接続を許可するためのオプションはありません
 
-   In this example, the AD certificate has been provided for verification purposes. 
-
+   この例では、すでにADの証明書が適切に提供されている状態となります
 
    .. image:: ./media/M1L1Connection.png
       :width: 800
 
-#. **User Binding** tab
+#. **User Binding** タブ
 
-   This section specifies the "Bind" account credentials for NGINX Controller to authenticate to Active Directory.
-
+   この項目は、NGINX ControllerがActive Directoryに対し認証を行う際に必要となる "Bind" で用いるアカウントの情報を指定します
 
    .. image:: ./media/M1L1UserBinding.png
       :width: 800
 
-#. **Group Setup** tab
+#. **Group Setup** タブ
 
-   This section determines the caching and query parameters for Active Directory groups which can be used for Role Based Access Control.
-
+   この項目は、Role Based Access Controlに使用する Active Directory のグループのために利用する、キャッシュとQueryパラメータを指定します
 
    .. image:: ./media/M1L1GroupSetup.png
       :width: 800
 
-#. **Group Mappings** tab
+#. **Group Mappings** タブ
 
-This section maps Active Directory groups to "Internal" NGINX Controller "Roles Groups".
-
+   この項目は、Active DirectoryのグループをNGINX Controller "内部(Internal)" で管理している "Roles Groups" への紐付けを指定します
 
    .. image:: ./media/M1L1GroupMappings.png
       :width: 800
 
-Controller "Roles Groups" can be configured under **Platform** -> **Roles**. 
-See the NGINX Controller documentation on managing `roles`_ for more information.
+   コントローラの "Roles Groups" は **Platform** -> **Roles** 配下で設定できます
+   より詳細な情報をご覧になる場合には、NGINX Controller ドキュメントの managing `roles`_ を参照してください
 
    .. image:: ./media/M1L1RolesGroups.png
       :width: 800
 
-The Active Directory groups used in the **Group Mapping** configuration can be viewed on the Domain Controller. 
+   **Group Mapping** 設定で利用されているActive Directory Groupは以下の様にDomain Controllerで確認できます
 
    .. NOTE::
-     The following pictures are for reference -- you don't need to login to the Domain Controller.
+     以下の画像は参考です。Domain Controllerへログインし確認する必要はありません
 
    .. image:: ./media/M1L1ADGroups.png
       :width: 800
 
    .. NOTE::
-     You are currently logged in as "Peter Parker". "Peter" is member of "nginx-controller-admins".  This Active Directory group is mapped to the "admin_group" roles group in NGINX Controller. 
+     あなたは "Peter Parker" としてログインしています。"Peter" は "nginx-controller-admins" のメンバーです。
+     このActive Directoryのグループは、NGINX Controllerの "admin_group" に割り当てられています
 
    .. image:: ./media/M1L1ADUsers.png
       :width: 600
@@ -141,12 +137,10 @@ The Active Directory groups used in the **Group Mapping** configuration can be v
    .. image:: ./media/M1L1ADControllerAdmins.png
       :width: 400
 
-Additional Reference
+追加情報
 --------------------
 
-The published NGINX Controller documentation walks through configuring an Active Directory authentication provider in `detail`_.
-
-
+公開されているNGINX ControllerドキュメントはActive Directory authentication providerの詳細(`detail`_)について記述しています
 
 .. _detail: https://docs.nginx.com/nginx-controller/platform/access-management/manage-active-directory-auth-provider/
 .. _roles: https://docs.nginx.com/nginx-controller/platform/access-management/manage-roles/
