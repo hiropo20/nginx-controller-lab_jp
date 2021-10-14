@@ -158,7 +158,7 @@ Environmentを作成する
    証明書 (**echoapp.net.crt**) 鍵 (**echoapp.net.key**) をポップアップで表示される内容から選択してください ( **This PC -> Documents -> Certs** ) 
 
    .. NOTE::
-      You will need to browse and upload the cert and key individually as Controller does not allow simultaneous file uploads.
+      証明書と鍵はそれぞれアップロードをしてください。NGINX Controllerは複数のファイルアップロードに対応していません
 
    .. image:: ./media/M2L1Cert&Key.png
       :width: 700
