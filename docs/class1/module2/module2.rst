@@ -1,15 +1,15 @@
 Module 2 - ADC Application Workflows
 =========================================
 
-One of the primary use cases for NGINX Controller is providing ADC services to modern applications.
-In this section, we will cover the concepts used in Controller's "app-centric" view of applications.
+NGINX Controllerの主なユースケースの一つが、ADCサービスをモダンアプリケーション環境に提供することです。
+このセクションでは、NGINX Controllerの「app-centric(アプリケーション中心)」で利用されるコンセプトについて紹介します。
 
-In Lab 1, students will walk through an app deployment in the Controller UI. 
-In Lab 2, students will deploy an application through postman to represent how a customer might integrate Controller application deployments in a CI/CD pipeline.
-In Lab 3, students will configure and test various "advanced ADC features" like URI rewrites and HTTP header manipulation which were previously only available as NGINX configuration directives.
-In Lab 4, students will configure a TCP proxy / load balancer.
-In Lab 5, students will configure a Gateway with a specific Listen IP and define a related Component.
-In Lab 6, students will launch security event load generation in preparation of Module 3 and 4.
+Lab 1: NGINX Controller GUIでアプリケーションのデプロイを確認します 
+Lab 2: お客様環境でどの様にNGINX ControllerのアプリケーションデプロイをCI/CD Piplineに統合するか確認するため、postmanを用いたアプリケーションのデプロイを確認します
+Lab 3: 様々なADCのadvanced機能をデプロイ、テストします。URI rewrite、HTTP Header操作などの機能を確認します
+Lab 4: TCP proxy / Load Balancerの設定します
+Lab 5: 特定のIPアドレスで待ち受けるGatewayの設定、及び関連するコンポーネントの設定を行います
+Lab 6: Module 3、4 の準備として、セキュリティイベントに関連するトラフィックを実行します
 
 .. toctree::
    :maxdepth: 1
