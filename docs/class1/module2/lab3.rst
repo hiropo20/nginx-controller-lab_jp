@@ -1,26 +1,27 @@
 Lab 3 - Advanced ADC Programmability Features
 ######################################################
 
-The goal of this lab is to demonstrate a few "advanced ADC" features which are now included in NGINX Controller. Previously, these
-features were only available as NGINX config directives. 
+このラボのゴールは、現在NGINX Controllerで利用可能な "advanced ADC" 機能を確認します。
+以前、ｍこれらの機能はNGINX Controllerで対応できず、NGINX Insntanceを個別に設定した場合の設定のみで利用が可能だった内容です
 
-.. important::
-   - Estimated completion time: 10 minutes
+.. IMPORTANT::
+    想定時間: 10分
 
 .. NOTE::
-     Lab instructions are written as if the student is executing the steps
-     from the Windows jumphost -- ``jumphost-1``. See the :ref:`overview` for connection details.
+    このLabの手順はラボを実施する方がWindows jumphost -- ``jumphost-1`` から操作する手順を示しています。
+    接続方法についてはこちらを参照ください。 :ref:`overview` 
 
-Access the App Component
+App Componentを開く
 -------------------------
 
-#. Open Chrome Browser.
-#. Access the NGINX Controller UI through the provided bookmark.
+#. Chromeを開く
+
+#. ブックマークよりNGINX Controller のGUIにアクセス
 
    .. image:: ../media/ControllerBookmark.png
       :width: 600
 
-#. Login with the ``Peter Parker`` account who is an NGINX Controller admin.
+#. NGINX Controller のadmin accountである、``Peter Parker`` でログインしてください
 
    +-------------------------+-----------------+
    |      Username           |    Password     |
@@ -31,37 +32,36 @@ Access the App Component
    .. image:: ../media/ControllerLogin-Peter.png
       :width: 400
 
-#. Navigate to the **Services** section.
+#. **Services** を開いてください
 
    .. image:: ../media/Tile-Services.png
       :width: 200
 
-#. Select the "Apps" tile.
+#. "Apps" を選択してください
 
    .. image:: ../media/Services-Apps.png
       :width: 200
 
-#. Select the **echoapp** from the "Echo Environment" you created in Module 2 Lab 1.
+#. "Echo Environment"から Module 2 Lab 1 で作成した **echoapp** を選択してください
 
    .. image:: ./media/M2L3echoapp.png
       :width: 200
 
-Create a URI Rewrite
+URI Rewriteを設定する
 ---------------------
 
-#. Navigate to **Components**. **Edit** the "echoappcomponent" you created earlier.
+#. **Components** を開いてください。 以前作成した "echoappcomponent" を **Edit** を開いてください
 
    .. image:: ./media/M2L3echoappEdit.png
       :width: 800
 
-#. Under the "Advanced" section, select **Programmability**.
+#. "Advanced" セクション内の、 **Programmability** を選択してください
 
    .. image:: ./media/M2L3program.png
       :width: 600
 
-#. In Chrome, test the response from the "echo" application before any changes are made to the component. 
-   Using Chrome Developer tools like previously in this module, make a request to ``http://echoapp.net/example``.
-   Note the response.
+#. Chrome内で、Componentによる構成変更前に、"echo" アプリケーションからどのような応答があるか確認してください
+   このモジュールの前の項目で実施したように Chrome Developer tools を開き、``http://echoapp.net/example`` へアクセスし、結果を確認してください
 
    .. image:: ./media/M2L3URLbar.png
       :width: 300 
@@ -72,14 +72,16 @@ Create a URI Rewrite
 .. NOTE::
      The app's JSON response confirms that the request received was to ``path: "/example"``. 
 
-#. On Controller, add a "URI Rewrite" to the component. This rewrite will seamlessly modify all requests to "/example*" to "/modified*".
-   Click **Add URI Rewrites** from "Programmability" dialogue.
+#. NGINX Controllerで、"URI Rewrite"をコンポーネントに追加してください。これはシームレスにすべての "/example*" 宛のリクエストを "/modified*" へ変更します
+   "Programmability" ダイアログの **Add URI Rewrites** をクリックしてください
 
    .. image:: ./media/M2L3AddRW.png
       :width: 600
 
-#. Complete the dialogue and click **Done** to save the rewrite. 
-   The NGINX `rewrite`_ module, and the Controller implementation, use PCRE regular expression syntax.
+``http://echoapp.net/example``
+
+#. 操作を完了し、変更内容を反映するため、**Done** をクリックしてください。
+   NGINXの別に `rewrite`_ モジュールがあり、PCRE正規表現の記述を用いて、NGINX Controllerの設定変更を行います
 
    +-------------------------+---------------------------+
    |        Field            |      Value                |
