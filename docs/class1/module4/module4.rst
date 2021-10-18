@@ -1,13 +1,13 @@
 Module 4 - Application Security
 ===============================
 
-In this section, students will walk through Controller Application Security - an add-on module for Controller powered by the NGINX App Protect engine.
+このセクションでは、NGINX Controller Application Securityについて確認します。これはNGINX App Protectエンジンを利用した、NGINX ConrollerのAdd On Moduleです
 
-In Lab 1, students will explore the Controller Application Security module through the application of policy aided by related events and metrics.
-In Lab 2, students will configure the Controller Application Security module through the API.
+Lab 1: ポリシーが適用されたアプリケーションに関連するイベントやメトリクスを確認し、NGINX Controller Application Security Moduleを確認します
+Lab 2: NGINX Controller Application Security ModuleをAPIを通じて操作することを確認します
 
 .. IMPORTANT::
-   - Please ensure you have started the load generator, outlined in Module 2 Lab 6 (:ref:`loadgen`), so you have analytics to view in this lab.  
+   Module 2 Lab 6 (:ref:`loadgen`)のロードジェネレータを実行したことを確認してください。このラボでAnalyticsの結果として参照します
 
 .. toctree::
    :maxdepth: 1
