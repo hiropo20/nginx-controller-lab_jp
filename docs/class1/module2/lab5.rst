@@ -1,33 +1,33 @@
-Lab 5 - Defining a specific listen IP
+Lab 5 - 待ち受ける特定のアドレスを定義する
 #######################################
 
-The goal of this lab is to familiarize the student with configuring a specific listen IP for a Gateway.
-There are times when it is desired to segment or prioritize traffic by using a specific IP of an NGINX Instance.  
-This is necessary when enabling data plane high availability or when segmenting traffic via IP address on the NGINX Plus instance.
+このラボのゴールはGatewayで待ち受ける特定のIPアドレスの設定について理解することです。
+NGINXインスタンスの特定のIPアドレスを使い制御することが望ましい場合が多々あります。
+これはデータプレーンの冗長化や、NGINX plusインスタンスのIPアドレスを通じてトラフィックの管理をする際に有用です
 
 .. IMPORTANT::
-    Estimated completion time: 5 minutes
+    想定時間: 5分
 
 .. NOTE::
-    Lab instructions are written as if the student is executing the steps
-    from the Windows jumphost -- ``jumphost-1``. See the :ref:`overview` for connection details.
+    このLabの手順はラボを実施する方がWindows jumphost -- ``jumphost-1`` から操作する手順を示しています。
+    接続方法についてはこちらを参照ください。 :ref:`overview` 
 
 
-Defining the listen IP of a Gateway
+Gatewayの待ち受けるIPアドレスを定義する
 -----------------------------------
-#. The jumphost should already have Chrome loaded with the controller UI at the login screen:
+#. jumphostのChromeで開かれているNGINX Controllerの管理画面を操作します。証明書エラーが表示されている場合には適切に操作をして画面を開いてください
 
    .. image:: ../media/ControllerLogin.png
       :width: 400
 
-#. If not, open Chrome Browser.
+#. もし開かれていない場合、Chromeブラウザを開いてください
 
-#. Access the NGINX Controller UI through the provided bookmark.
+#. BookmarkからNGINX Controller UIにアクセスしてください
 
    .. image:: ../media/ControllerBookmark.png
       :width: 600
 
-#. Login with the ``Peter Parker`` account who is an NGINX Controller admin.
+#. NGINX Controller のadmin accountである、``Peter Parker`` でログインしてください
 
    +-------------------------+-----------------+
    |      Username           |    Password     |
@@ -38,25 +38,25 @@ Defining the listen IP of a Gateway
    .. image:: ../media/ControllerLogin-Peter.png
       :width: 400
 
-#. Navigate to the **Services** section. The items or "tiles" under this menu will be used to create the configuration for this lab.
+#. **Services** セクションを開き、このラボではこちらのセキュションの項目を対象として設定を行います
 
    .. image:: ../media/Tile-Services.png
       :width: 200
 
-Create a Gateway
+Gatewayを作成する
 ^^^^^^^^^^^^^^^^^
 
-#. Select the "Gateways" tile.
+#. "Gateways" を選択します
 
    .. image:: ./media/M2L1GatewayTile.png
       :width: 200
 
-#. Click the "Create" button in the upper right.
+#. 右上の "Create" ボタンをクリックします
 
    .. image:: ./media/M2L1GWcreate.png
       :width: 600
 
-#. Under the **Configuration** dialogue, fill out the form. When finished click **Next** or click the name of the next section.
+#. **Configuration** に表示される項目に以下の内容を入力します。終了後 **Next** をクリックするか、次の項目名をクリックしてください
 
    +---------------------+----------------------------------+
    |        Field        |      Value                       |
@@ -69,21 +69,21 @@ Create a Gateway
    .. image:: ./media/M2L5GWDialogue.png
       :width: 600
 
-#. Under the **Placements** dialogue, select the "Development NGINX West 03 (CAS)” Instance Ref.
+#. **Placements** で、"Development NGINX West 03 (CAS)” を対象インスタンスとして選択します
 
    .. image:: ./media/M2L1Place.png
       :width: 700
 
-#. Under the **Placements** dialogue, enter the "10.1.20.213” Listen IP.
+#. **Placements** で、"10.1.20.213” を待ち受けIPアドレスとして入力して下さい
 
    .. image:: ./media/M2L5Place.png
       :width: 700
 
    .. NOTE::
-      This is a secondary IP that has already defined on the "Development NGINX West 03 (CAS)” machine. You can observe this In the IP Address field of the Instance in the **Infrastructure** section of Controller.
+      これは "Development NGINX West 03 (CAS)" に予め設定されたSecondary IPアドレスです。この情報はNGINX Controller **Infrastructure** セクションのインスタンスの情報から確認いただけます
 
-#. Under the **Hostnames** dialogue, leave the Hostname empty. 
-   This implies that you will later define the Hostname in the URI setting of the Component or treat all traffic directed to this IP identically such as a TCP / UDP Component.
+#. **Hostnames** の Hostname は空白としてください。
+   これは、あなたが後にコンポーネントのURI設定でホスト名を指定すること、TCP や UDPのコンポーネントとしてIPアドレスに着信するすべてのトラフィックを扱うことを意図します
 
    .. image:: ./media/M2L5Hostnames.png
       :width: 700
@@ -93,15 +93,15 @@ Create a Gateway
    .. image:: ../media/Submit.png
       :width: 100
 
-Create a Component
+Component を作成する
 ^^^^^^^^^^^^^^^^^^^
 
-#. Using the echoapp: Select the "Components" section followed by the "Create Component" button in the top right.
+#. echoapp を利用します: 右上の "Create Component" ボタンをクリックし、"Components" セクションを開きます
 
    .. image:: ./media/M2L5PlusCreateComponent.png
       :width: 800
 
-#. Fill out the form and select the **Gateway Refs** from the drop-down.
+#. 項目に以下の内容を入力し、ドロップダウンリストより **Gateway Refs** の内容を選択してください
 
    +-------------------------+--------------------------+
    |        Field            |      Value               |
@@ -114,17 +114,17 @@ Create a Component
    .. image:: ./media/M2L5CompDiag.png
       :width: 700
 
-#. Under the **URIs** dialogue, add the URI ``http://.*:8080`` and specify the ``REGEX`` **Match Method**.
+#. **URIs** で、URI ``http://.*:8080`` を追加し、``REGEX`` を **Match Method** として選択してください
 
    .. image:: ./media/M2L5CompURI.png
       :width: 700
 
    .. NOTE::
-      If the port in the URI is not defined as 8080 the error ``ListenIP 10.1.20.213 on Port 80 conflicts with an existing gateway``.
-      This conflict message occurs if the port if not unique because there are other Gateways associated with the same NGINX Plus instance listening for HTTP or HTTPS traffic on port 80 and 443 respectively.
-      If a Listen IP is not defined then all IPs will be used for a Gateway.
+      URIのPortが8080として定義されない場合、``ListenIP 10.1.20.213 on Port 80 conflicts with an existing gateway`` とエラーが出力されます
+      同一のNGINX PlusインスタンスHTTP(port 80)やHTTPS(port 443)トラフィックを処理する別のGateway設定があり、設定したポートが唯一のポートでない場合にメッセージが出力されます。
+      もしListen IPが定義されない場合、すべてのIPアドレスがGatewayで利用されます
 
-#. Under the **Workload Groups** dialogue, fill out the form.
+#. **Workload Groups** で、以下の通り項目を埋めてください
 
    +-------------------------+-----------------------------+
    |        Field            |      Value                  |
@@ -137,23 +137,23 @@ Create a Component
    .. image:: ./media/M2L5WGdiag.png
       :width: 600
 
-#. Click **Submit** to complete.
+#. 作業を完了させるため **Submit** をクリックしてください
 
    .. image:: ../media/Submit.png
       :width: 100
 
-Test the Listen IP Component
+Listen IP Component をテストする
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. In Chrome on ``jumphost-1``, open a new tab and enable "Developer Tools". 
+#. ``jumphost-``1 のChromeで新しいタブを開き、 "Developer Tools" を有効にしてください
 
    .. image:: ./media/M2L1DevTools.png
       :width: 800
 
-#. Browse to the App URLs you created earlier (``http://10.1.20.213:8080``) to verify the``wildcard`` application is functioning using the Listen IP address specified in the ``specialapp`` Gateway.
+#. 先ほど作成したURI(``http://10.1.20.213:8080``)に接続し、specialapp GatewayでIPアドレスで待ち受けるよう設定した機能の動作を確認してください
 
    .. image:: ./media/M2L5DevTools2.png
       :width: 800 
 
    .. NOTE::
-      Using the REGEX expression of ``.*`` allowed the URI to match any hostname, even an IP address.
+       ``.*`` の正規表現はURIに指定されたすべてのホスト名や、IPアドレスに該当することを示すルールとなります
