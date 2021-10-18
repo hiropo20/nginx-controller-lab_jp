@@ -1,26 +1,26 @@
 Lab 4 - TCP Load Balancing / Routing
 ######################################################
 
-The goal of this lab is to demonstrate a layer 4 or TCP load balancer configuration.  
-Not all traffic is HTTP, and though there is a large number of ways to manipulate HTTP traffic, sometimes you also have to route TCP or UDP traffic. 
+このラボのゴールは、L4 / TCPロードバランサを設定することです。
+すべてのトラフィックがHTTPではなく、HTTPトラフィックを操作する方法は多くありますが、ときにはTCP/UDPトラフィックの操作をしなければいけません
 
-.. important::
-   - Estimated completion time: 5 minutes
+.. IMPORTANT::
+    想定時間: 5分
 
 .. NOTE::
-     Lab instructions are written as if the student is executing the steps
-     from the Windows jumphost -- ``jumphost-1``. See the :ref:`overview` for connection details.
+    このLabの手順はラボを実施する方がWindows jumphost -- ``jumphost-1`` から操作する手順を示しています。
+    接続方法についてはこちらを参照ください。 :ref:`overview` 
 
-Access the App Component
+App Componentを開く
 -------------------------
 
-#. Open Chrome Browser.
-#. Access the NGINX Controller UI through the provided bookmark.
+#. Chromeを開きます
+#. BookmarkからNGINX ControllerのGUIを開きます
 
    .. image:: ../media/ControllerBookmark.png
       :width: 600
 
-#. Login with the ``Peter Parker`` account who is an NGINX Controller admin.
+#. NGINX Controller のadmin accountである、``Peter Parker`` でログインしてください
 
    +-------------------------+-----------------+
    |      Username           |    Password     |
@@ -31,30 +31,30 @@ Access the App Component
    .. image:: ../media/ControllerLogin-Peter.png
       :width: 400
 
-#. Navigate to the **Services** section.
+#. **Services** セクションを開いてください
 
    .. image:: ../media/Tile-Services.png
       :width: 200
 
-#. Select the "Apps" tile.
+#. "Apps" を選択してください
 
    .. image:: ../media/Services-Apps.png
       :width: 200
 
-#. Select the **echoapp** from the "Echo Environment" you created in Module 2 Lab 1.
+#. "Echo Environment"から Module 2 Lab 1 で作成した **echoapp** を選択してください
 
    .. image:: ./media/M2L3echoapp.png
       :width: 200
 
-Create a TCP Component
+TCP Component を作成する
 ----------------------
 
-#. Using the echoapp:  Select the "Components" section followed by the "Create Component" button in the top right.
+#. echoapp を利用します: 右上の "Create Component" をクリックし、"Components" セクションを選択してください
 
    .. image:: ./media/M2L1CreateComponent.png
       :width: 800
 
-#. Fill out the form and select the **Gateway Refs** from the drop-down.
+#. 各項目を埋め、ドロップダウンリストから **Gateway Refs** を適切に選択してください
 
    +-------------------------+--------------------------+
    |        Field            |      Value               |
@@ -69,12 +69,12 @@ Create a TCP Component
    .. image:: ./media/M2L4CompDiag.png
       :width: 700
 
-#. Under the **URIs** dialogue, add the URI ``tcp://*:9443``
+#. **URIs** ダイアログを開き、URI ``tcp://*:9443`` を追加してください
 
    .. image:: ./media/M2L4CompURI.png
       :width: 700
 
-#. Under the **Workload Groups** dialogue, fill out the form.
+#. **Workload Groups** ダイアログを開、各項目を埋めてください
 
    +-------------------------+-----------------------------+
    |        Field            |      Value                  |
@@ -89,41 +89,39 @@ Create a TCP Component
    .. image:: ./media/M2L4WGdiag.png
       :width: 600
 
-#. Click **Submit** to complete.
+#. 操作を完了するため **Submit** をクリックしてください
 
    .. image:: ../media/Submit.png
       :width: 100
 
-Test the TCP Component
+TCP Componentをテストします
 ^^^^^^^^^^^^^^^^^^^^^^
-#. In Chrome on ``jumphost-1``, open a new tab and enable "Developer Tools". 
+#. ``jumphost-1`` のChromeで新しいタブを開き、 "Developer Tools" を有効にしてください
 
    .. image:: ./media/M2L1DevTools.png
       :width: 900
 
-#. Browse to the App URLs you created earlier with the new port (``http://echoapp.net:9443`` ) to verify the "echo" application is functioning over TCP.
-   Select the **echoapp.net** request to view the results.
+#. 先程新たに作成したURL(``http://echoapp.net:9443`` )を開き、TCP設定で "echo" アプリケーションがどのように動作しているか確認してください
+   **echoapp.net** にアクセスしたリクエストを選択し、表示結果を確認してください
 
    .. NOTE::
-      This simple web application will "echo" back information about the HTTP request it is responding to.
+      これはHTTP Requestの情報を返す、シンプルなWebアプリケーションです
 
    .. image:: ./media/M2L1DevTools2.png
       :width: 800 
 
-#. Browse to the same URL using HTTPS (``https://echoapp.net:9443`` ) to verify the "echo" application is functioning over TCP.
-   Notice that the traffic is blocked.
-   If you wanted to encrypt the TCP traffic, you would provide a certificate and define the protocol as ``tcp+tls`` instead of ``tcp`` then like HTTPS traffic the Gateway would be providing SSL Offload before forwarding to the backend workloads.
+#. 同じURLのHTTPSページ(``https://echoapp.net:9443`` )を開き、TCP設定で "echo" アプリケーションがどのように動作しているか確認してください
+   閲覧の結果、トラフィックはブロックされます
+   もし、TCPトラフィックを暗号化したい場合、証明書を設定し、URLを指定する項目で ``tcp`` とした項目を ``tcp+tls`` とすることで、バックエンド転送前にゲートウェイでHTTPSトラフィックのSSL Offloadを実現することが可能です
 
    .. image:: ./media/M2L4DevTools2.png
       :width: 400 
 
 
-Additional Reference
+追加情報
 --------------------
 
-The "TCP/UDP" component allows configuration of stream or Layer 4 proxy.
-These features are powered by the NGINX `stream`_ module. Review the module documentation for more information. 
-
-
+"TCP/UDP" コンポーネントは、L4 / Stream Proxyを提供します。
+これらの機能は NGINXの `stream`_ モジュールを利用しています。詳細についてはドキュメントを参照してください
 
 .. _stream: http://nginx.org/en/docs/stream/ngx_stream_core_module.html
