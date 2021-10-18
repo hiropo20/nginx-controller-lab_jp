@@ -98,9 +98,9 @@ URI Rewriteを設定する
       :width: 600
 
    .. IMPORTANT::
-     More advanced and ordered rulesets for URI modifications can be achieved through the use of the "After Execute" modifier.
+     より詳細な順序を指定したURIを操作するルールセットが必要となる場合、 "After Execute" 機能を利用し実装を検討ください
 
-#. Click **Submit** and verify the changes to the component are pushed to the "Gateway". The Component status should go from "Configuring" to "Configured". 
+#. **Submit** をクリックし、変更したComponentの内容を "Gateway" にプッシュしてください。コンポーネントのステータスが、"Configuring" から "Configured" に変わったことを確認してください
 
    .. image:: ../media/Submit.png
       :width: 100
@@ -108,40 +108,40 @@ URI Rewriteを設定する
    .. image:: ./media/M2L3RWconfigured.png
       :width: 800
 
-#. In Chrome, Test the URI rewrite by sending another request to the echo application for "/example" (ie. just hit refresh on that tab). Observe the response.
+#. Chromeで、echoapp に対し "/example" というリクエストを送信し、Rewrite動作のテストをしてください。応答データの内容を確認してください
 
    .. image:: ./media/M2L3afterURLRW.png
       :width: 800
 
    .. NOTE::
-     The "echo" app's JSON response now shows it received a request for "/modified" as opposed to the URI in the browser bar ("/example").
+     "Echo" appのJSONレスポンスは、ブラウザのURIで入力した情報("/example")ではなく、"/modified(変更後)"のリクエストが表示されていることを確認ください
 
 
-Create a Request Header Modification
+Request Header 変更機能を設定する
 -------------------------------------
 
-#. Back under the "echoapp" App in Controller, navigate to **Components**. **Edit** the "echoappcomponent" you created earlier.
+#. NGINX Controllerの "echoapp" App の画面を再度開き、**Components** を開いてください。先程作成した "echoappcomponent" で **Edit** をクリックしてください
 
    .. image:: ./media/M2L3echoappEdit.png
       :width: 800
 
-#. Under the "Advanced" section, select **Programmability**.
+#. "Advanced" セクション配下にある **Programmability** を選択してください
 
    .. image:: ./media/M2L3program.png
       :width: 700
 
-#. In Chrome, take note of the HTTP headers in the response from the previous requests to the "echo" app.
+#. Chromeで、前回 "echo" app にアクセスした際のレスポンスヘッダーの情報を確認してください
 
    .. image:: ./media/M2L3beforeHeaders.png
       :width: 800
 
-#. On Controller, add a "Request Header Modification" to the component. This feature will inject an HTTP header into the request before it reaches the upstream/pool members.
-   Click **Add Request Header Modification** from "Programmability" dialogue.
+#. NGINX Controllerで、コンポーネントの"Request Header Modification"を追加してください。この機能はupstream/pool memberに通信を転送する際に、ADCとして動作するNGINX PlusでHTTP Headerを追加する機能です
+   "Programmability" の **Add Request Header Modification** をクリックしてください
 
    .. image:: ./media/M2L3AddHM.png
       :width: 600
 
-#. Complete the dialogue and click **Done** to save the rewrite. 
+#. 以下の内容を入力し、内容を保存するため **Done** クリックしてください 
 
    +-------------------------+--------------------------------------+
    |        Field            |      Value                           |
@@ -159,7 +159,7 @@ Create a Request Header Modification
    .. image:: ./media/M2L3Headerready.png
       :width: 600
 
-#. Click **Submit** and verify the changes to the component are pushed to the "Gateway". The Component status should go from "Configuring" to "Configured". 
+#. **Submit** をクリックし、変更したComponentの内容を "Gateway" にプッシュしてください。コンポーネントのステータスが、"Configuring" から "Configured" に変わったことを確認してください 
 
    .. image:: ../media/Submit.png
       :width: 100
@@ -167,23 +167,23 @@ Create a Request Header Modification
    .. image:: ./media/M2L3RWconfigured.png
       :width: 800
 
-#. In Chrome, test the HTTP header insertion by sending another request to the echo application (ie. just hit refresh on that tab). Observe the response headers.
+#. Chromeで、echoapp に対し再度リクエストを送信し(更新ボタンをクリックするなど)HTTP Headerの挿入について動作を確認してください。応答データの内容を確認してください
 
    .. image:: ./media/M2L3afterHM.png
       :width: 800
 
    .. NOTE::
-     The "echo" app's JSON response shows the inserted header was added in the HTTP request.
-     In this arbitrary example, we've added a header to show which NGINX Plus instance handled the request. 
-     Request and Response HTTP headers can be added or deleted as needed by your application.
+     "echo" Appが応答するJSONデータは、HTTPリクエストに追加されたヘッダーの情報が表示されます。
+     このヘッダー追加機能により、どのNGINX Plusインスタンスが通信の操作を行ったか示すHTTP Headerの追加をすることが可能です。
+     リクエストやレスポンスのHTTP Headerを追加・削除するなど、アプリケーションに求められる内容を実施することが可能です
 
-Additional Reference
+追加情報
 --------------------
 
-The "Programmability" section allows configuration of URI redirects, URI rewrites, request Header modifications, and response header modifications.
-These features are powered by the NGINX `rewrite`_ module. Review the module documentation for more information. 
+"Programmability" セクションでは、URIリダイレクト、URI Rewrite、リクエストヘッダー操作、レスポンスヘッダー操作を行うことができます。
+これらの機能は、NGINXの`rewrite`_モジュールによって実現しています。より詳細な情報についてはmoduleのドキュメントを参照してください。
 
-The NGINX REGEX validator can be helpful as you construct your own expressions: `regex`_ blog.  It is also useful to understand that NGINX uses Perl Compatible Regular Expressions (PCRE).
+NGINX REGEX validator は作成した正規表現を確認するのに便利です。こちらの記事を参照ください(`regex`_ blog)。また、NGINXが使うPerlの正規表現(PCRE)も理解に役立ちます。合わせてご確認ください。
 
 .. _rewrite: http://nginx.org/en/docs/http/ngx_http_rewrite_module.html
 .. _regex: https://www.nginx.com/blog/regular-expression-tester-nginx/
