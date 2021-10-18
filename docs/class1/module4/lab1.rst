@@ -1,7 +1,7 @@
 Lab 1 - Application Security (GUI)
 #################################
 
-このラボのゴールは、ポリシーが適用されたアプリケーションに関連するイベントやメトリクスを確認し、NGINX Controller Application Security Moduleを理解することでうｓ
+このラボのゴールは、ポリシーが適用されたアプリケーションに関連するイベントやメトリクスを確認し、NGINX Controller Application Security Moduleを理解することです
 
 .. IMPORTANT::
     想定時間: 15分
