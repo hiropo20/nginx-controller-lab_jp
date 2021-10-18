@@ -1,8 +1,8 @@
 NGINX Controller Lab Guide
 ==========================
 
-[NGINX Original Lab Guide](https://github.com/nginxinc/nginx-controller-lab)
-[NGINX Controller Document](https://docs.nginx.com//nginx-controller/)
+- [NGINX Original Lab Guide](https://github.com/nginxinc/nginx-controller-lab)
+- [NGINX Controller Document](https://docs.nginx.com//nginx-controller/)
 
 Introduction
 ------------
