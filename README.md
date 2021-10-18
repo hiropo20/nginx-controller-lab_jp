@@ -1,12 +1,13 @@
 NGINX Controller Lab Guide
 ==========================
 
-[Original Document](https://github.com/nginxinc/nginx-controller-lab)
+[NGINX Original Lab Guide](https://github.com/nginxinc/nginx-controller-lab)
+[NGINX Controller Document](https://docs.nginx.com//nginx-controller/)
 
 Introduction
 ------------
 
-このレポジトリはNGINXが管理するNGINX Controller 3.x UDF向けドキュメントの日本語版です。最新の内容はOriginalを参照してください。
+このレポジトリはNGINXが管理するNGINX Controller 3.x UDF向けドキュメントの日本語版です。最新の内容はOriginal Lab Guideを参照してください。
 
 Release
 ------------
@@ -25,7 +26,7 @@ Release
 1. `docs/_build/html/index.html` の内容をWebブラウザで開いてください
 
 
-Build Scripts (Reffer to Original Document)
+Build Scripts (Reffer to Original Lab Guide)
 -------------
 
 以下のコマンド群が管理されています
