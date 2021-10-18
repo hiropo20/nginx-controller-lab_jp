@@ -1,4 +1,4 @@
-Lab 3 - NGINX Plus の追加
+Lab 3 - NGINX Plus の追加 (作成中)
 ############################################
 
 このラボのゴールは新たにNGINX Controllerの管理対象としてNGINX Plusを追加することです。
@@ -38,7 +38,7 @@ NGINX Plus のインストール
       $ tar zxvf nginx-plus-certs.tar.gz
       $ ls nginx-repo.*
 
-#. NGINX Plus インストールに必要となる手順を実施します。手順の各コマンドの役割は[NGINX Plusのインストール手順(Ubuntu)](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/#installing-nginx-plus-on-ubuntu)を参照してください
+#. NGINX Plus インストールに必要となる手順を実施します。手順の各コマンドの役割は `NGINX Plusのインストール手順(Ubuntu)`_ を参照してください
 
    .. code-block:: bash
       $ sudo mkdir -p /etc/ssl/nginx
@@ -52,7 +52,7 @@ NGINX Plus のインストール
       $ sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
       $ sudo apt-get update
 
-#. NGINX Plus をインストールします。NGINX Controller に対応したVersionとしてR24をインストールします。NGINX Controllerに対応するNGINX PlusのVersionは[Tech Spec](https://docs.nginx.com/nginx-controller/admin-guides/install/nginx-controller-tech-specs/#nginx-plus-instances)を確認してください
+#. NGINX Plus をインストールします。NGINX Controller に対応したVersionとしてR24をインストールします。NGINX Controllerに対応するNGINX PlusのVersionは `Tech Spec`_ を確認してください
 
    .. code-block:: bash
       $ sudo apt-get install nginx-plus=24-2~focal
@@ -102,10 +102,17 @@ NGINX PlusのインスタンスをNGINX Controllerに追加する
    +===================+=======================+
    |  Name             |  ``controller-3``     |
    +-------------------+-----------------------+
-   |  Location   |  ``10.1.1.10``        |
+   |  Location   |  ``east``        |
    +-------------------+-----------------------+
    | Allow insecure server connections to NGINX Controller using TLS| チェック |
    +-------------------+-----------------------+
 
 #. ``Instructions`` に表示されるCURLコマンドの内容をコピーしてください。次のステップで利用します
 
+#. 前の手順で利用した "nginxplus-4" のターミナル、または "PuTTY" を開き再度 **nginxplus-4** を開いてください。``Instructions`` からコピーしたcurlコマンドを実行してください
+
+#. ChromeでNGINX Controllerの **Infrastructure** を開き、新たに "nginxplus-4" が追加されることを確認してください
+
+
+.. _NGINX Plusのインストール手順(Ubuntu): https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/#installing-nginx-plus-on-ubuntu
+.. _Tech Spec: https://docs.nginx.com/nginx-controller/admin-guides/install/nginx-controller-tech-specs/#nginx-plus-instances
