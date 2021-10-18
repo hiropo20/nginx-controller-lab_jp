@@ -1,39 +1,38 @@
 Lab 2 - Application Security (API)
 ##################################
 
-The goal of this lab is to configure the Controller Application Security module through the API.
+このラボのゴールは、NGINX Controller Application Security ModuleをAPIを通じて操作することです
 
 .. IMPORTANT::
-    Estimated completion time: 5 minutes
+    想定時間: 5分
 
 .. NOTE::
-    Lab instructions are written as if the student is executing the steps
-    from the Windows jumphost -- ``jumphost-1``. See the :ref:`overview` for connection details.
+    このLabの手順はラボを実施する方がWindows jumphost -- ``jumphost-1`` から操作する手順を示しています。
+    接続方法についてはこちらを参照ください。 :ref:`overview` 
 
 
 Alter Security Settings in API
 ------------------------------
 
-Do you know you could have enabled WAF and managed its settings using the Controller's REST API?
-This can be accomplished by using a tool such as Postman or via an automated configuration management tool such as Red Hat Ansible.
-In this lab, we will be using the Postman application on the Windows jumphost.
+あなたはNGINX ControllerのREST APIを通じてWAFを有効にしたり設定を変更したりする方法がわかりますか？
+これを達成するのが、PostmanやRed Hat Ansibleなど構成管理ツールを用いた自動化です。
+このラボでは、PostmanをWindows jumphostから操作し動作を確認します
 
-
-Update a Component's Security Settings using Postman
+Postmanを用いて、Component の Security Settings を更新する
 ----------------------------------------------------
 
-#. On the jumphost, open **Postman**. Expand the **NGINX Controller 3.x** Collection.
+#. jumphostで **Postman** を開きます。**NGINX Controller 3.x** Collection を開きます
 
    .. image:: ../media/PMcoll.png
       :width: 400
 
-#. Expand **Common Tasks**, **User Logon**, and select the **Login to Controller
-   – Natasha Romanoff - AD** request.
+
+#. **Common Tasks**、 **User Logon** を開き **Login to Controller – Natasha Romanoff - AD** を選択します
 
    .. image:: ../media/PMcoll2.png
       :width: 400
 
-#. In Postman select **Send**.
+#. Postman **Send** を選択します
 
    .. image:: ../media/PMsend1.png
       :width: 600
@@ -41,41 +40,40 @@ Update a Component's Security Settings using Postman
    .. NOTE::
       Controller responds with a "204 No Content" response and an authentication cookie. 
 
-#. Expand the **Retail-Development Environment**, **Application - trading** folder. 
-   Open the **Application trading** subfolder and select the request name **2) Create Component - main (CAS monitoring)**.
+#. **Retail-Development Environment**、 **Application - trading** を開きます 
+   **Application trading** サブフォルダを開き、**2) Create Component - main (CAS monitoring)** を選択します
 
    .. image:: ./media/PMTradingMainCASMonitoring.png
       :width: 400
 
-#. Click the **Body** view in the Postman request area. Look over the PUT request payload. 
-   The JSON properties under ``desiredState``, ``security`` 
-   should look familiar based on the Component you deployed in the previous lab.
+#. Postmanのリクエストエリアにある **Body** をクリックしてください。PUT リクエストのペイロードを確認してください。
+   JSONの ``desiredState``, ``security`` 配下のプロパティ値は前回のラボでデプロイした Component に関する内容であることが確認できます
 
    .. image:: ./media/PMTradingMainCASMonitoringBody.png
 
-#. In Postman select **Send**.
+#. Postmaneで **Send** を選択します
 
    .. image:: ./media/PMTradingMainCASMonitoringSend.png
       :width: 800
 
    .. NOTE::
-      Controller follows an "eventual consistency model". The API responded to the Postman request with a "202 Accepted" status code.
-      If you were to look back at the Controller UI, you would notice it is now working to bring about the desired state. 
-
+      NGINX Controllerは "eventual consistency model" に従います。APIはPostmanのリクエストに "202 Accepted" ステータスコードを返します。
+      NGINX Controllerは現状動作し、意図した状態であることが確認できます
+      
    .. image:: ./media/PMTradingMainCASMonitoringConfiguring.png
       :width: 600
 
-Verify Component Changes
+コンポーネントの変更を確認する
 ------------------------
 
-#. Open Chrome Browser. If the Controller tab is not already open from the previous lab, perform the following login steps.
+#. Chromeを開きます。NGINX Controllerに接続しているタブで以下手順に従ってログインします
 
-#. Access the NGINX Controller UI through the provided bookmark.
+#. BookmarkからNGINX Controller UIにアクセスしてください
 
    .. image:: ../media/ControllerBookmark.png
       :width: 600
 
-#. Login with the ``Natasha Romanoff`` account who is an (unprivileged) NGINX Controller user.
+#. NGINX Controllerの特権を持たないユーザである  ``Natasha Romanoff`` でログインしてください
 
 +---------------------------+-------------------+
 |      Username             |    Password       |
@@ -86,24 +84,24 @@ Verify Component Changes
    .. image:: ../media/ControllerLogin-Natasha.png
         :width: 400
 
-#. Navigate to the **Services** menu.
+#. **Services** メニューを開いてください
 
     .. image:: ../media/Tile-Services.png
         :width: 200
 
-#. Select the **Apps** tile.
+#. **Apps** を選択します
 
    .. image:: ../media/Services-Apps.png
       :width: 200
 
-#. Open the **Trading Application (CAS)** app. Note that the **Trading Main** component's **WAF Enablement Status** is "On", and the **WAF Monitoring Only Status** is "On".
+#. **Trading Application (CAS)** appを開きます。**Trading Main** コンポーネントの**WAF Enablement Status** 、**WAF Monitoring Only Status**が "On" であることを確認できます
 
     .. image:: ./media/PMTradingMainCASMonitoringVerifyApp.png
 
-#. Click the **Components** section. 
+#. **Components** セクションをクリックしてください
 
     .. image:: ./media/PMTradingMainCASMonitoringVerifyComponent.png
 
 
-Congratulations! You have successfully completed the |classbold| lab. You may close your connection to the jumphost.
+おめでとうございます！！ |classbold| ラボは完了完了しました！！
 --------------------------------------------------------------------------------------------------------------------
