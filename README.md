@@ -19,10 +19,11 @@ Release
 本Lab Guide 表示用 Container Setup 方法
 -----
 
-#. Download または `git clone` により 本 nginx-controller-lab のファイルを取得してください
-#. Docker CE (https://docs.docker.com/engine/installation/) をダウンロード＆インストール
-#. `./containthedocs-build.sh` を用いてサンプルドキュメントを作成。 初回作成時にはDocker Hubよりコンテナイメージ(~1GB)がダウンロードされます
-#. `docs/_build/html/index.html` の内容をWebブラウザで開いてください
+1. Download または `git clone` により 本 nginx-controller-lab のファイルを取得してください
+1. Docker CE (https://docs.docker.com/engine/installation/) をダウンロード＆インストール
+1. `./containthedocs-build.sh` を用いてサンプルドキュメントを作成。 初回作成時にはDocker Hubよりコンテナイメージ(~1GB)がダウンロードされます
+1. `docs/_build/html/index.html` の内容をWebブラウザで開いてください
+
 
 Build Scripts (Reffer to Original Document)
 -------------
