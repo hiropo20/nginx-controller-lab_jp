@@ -12,7 +12,7 @@ NGINX Controllerで管理する対象となるNGINX Plusは通常のNGINX Plus S
     接続方法についてはこちらを参照ください。 :ref:`overview` 
 
 NGINX Plus のインストール
------------------------------------------------------------
+----
 
 #. "nginxplus-4" インスタンスにログインしてください。"PuTTY" を開き、保存済みのホストより **nginxplus-4** を選択し、**Open** をクリックしてください
 
@@ -26,27 +26,41 @@ NGINX Plus のインストール
 #. Curl コマンドを実行し、NGINX Controllerのログインに必要なCookie情報を取得します。ログインユーザとしてAdmin権限の``Peter Parker``でログインします
 
    .. code-block:: bash
+   
       $ curl -k -c cookie.txt -X POST --url 'https://10.1.1.5/api/v1/platform/login' --header 'Content-Type: application/json' --data '{"credentials": {"type": "ACTIVE_DIRECTORY","providerName":"ad-acmefinancial-net", "username": "peter@acmefinancial.net","password": "Peter123!@#"}}'
       $ curl -k -b cookie.txt -c cookie.txt -X GET --url 'https://10.1.1.5/api/v1/platform/login'
 
 #. NGINX Plus インストールに利用する証明書と鍵を取得します。
 
    .. code-block:: bash
+   
       $ curl -k -b cookie.txt -c cookie.txt -X GET --url 'https://10.1.1.5/api/v1/platform/licenses/nginx-plus-licenses/controller-provided' --output nginx-plus-certs.tar.gz
       $ tar zxvf nginx-plus-certs.tar.gz
       $ ls nginx-repo.*
 
-   .. image:: ./media/M1L2InstallCommand.png
-      :width: 800
+#. NGINX Plus インストールに必要となる手順を実施します。手順の各コマンドの役割は[NGINX Plusのインストール手順(Ubuntu)](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/#installing-nginx-plus-on-ubuntu)を参照してください
 
-#. コマンドの実行結果として、クラスタに追加が完了したことがノードに表示されます
+   .. code-block:: bash
+      $ sudo mkdir -p /etc/ssl/nginx
+      $ sudo cp nginx-repo.* /etc/ssl/nginx/
+      $ sudo wget https://cs.nginx.com/static/keys/nginx_signing.key && sudo apt-key add nginx_signing.key
+      $ sudo wget https://cs.nginx.com/static/keys/app-protect-security-updates.key && sudo apt-key add app-protect-security-updates.key
+      $ sudo apt-get install apt-transport-https lsb-release ca-certificates
+      $ printf "deb https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nginx-plus.list
+      $ printf "deb https://pkgs.nginx.com/app-protect/ubuntu `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nginx-app-protect.list
+      $ printf "deb https://pkgs.nginx.com/app-protect-security-updates/ubuntu `lsb_release -cs` nginx-plus\n" | sudo tee -a /etc/apt/sources.list.d/nginx-app-protect.list
+      $ sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
+      $ sudo apt-get update
 
-   .. image:: ./media/M1L2NodeJoinSuccess.png
-      :width: 300
-      
+#. NGINX Plus をインストールします。NGINX Controller に対応したVersionとしてR24をインストールします。NGINX Controllerに対応するNGINX PlusのVersionは[Tech Spec](https://docs.nginx.com/nginx-controller/admin-guides/install/nginx-controller-tech-specs/#nginx-plus-instances)を確認してください
 
-追加するNGINX Controllerのノードを作成する
-------------------------------------------
+   .. code-block:: bash
+      $ sudo apt-get install nginx-plus=24-2~focal
+      $ nginx -v
+
+
+NGINX PlusのインスタンスをNGINX Controllerに追加する
+----
 
 #. jumphostのChromeで開かれているNGINX Controllerの管理画面を操作します。証明書エラーが表示されている場合には適切に操作をして画面を開いてください
 
@@ -76,116 +90,22 @@ NGINX Plus のインストール
    .. image:: ../media/Tile-Infrastructure.png
       :width: 200
 
-#. **Cluster** を開いてください
+#. 画面右上の **Create** ボタンをクリックしてください
 
    .. image:: ./media/M1L2ClusterTile.png
       :width: 800
 
-#. 現在の "Cluster Configuration" を確認してください
-
-   .. image:: ./media/M1L2ClusterConfig.png
-      :width: 800
-
-.. NOTE::
-     "Cluster Configuration" の項目は、クラスタを構成するNGINX Controllerインスタンスを示します。
-     FQDNはAPI Gateway podに割り当てる証明書で利用するcommon nameに該当します
-     例: APIエンドポイントやGUIの接続先として公開するサービスの名称
-
-.. IMPORTANT::
-    "load balancer"設定は今後リリースされるNGINX Controllerにて設定可能となる予定です
-    追加の情報はラボの :ref:`Reference` を参照してください
-
-.. NOTE::
-    "Nodes"として現在2つのNGINX Controller インスタンスが表示されています
-    ( "controller-1" および "controller-2" に該当するノード)
-
-#. 画面右上の **Create Node** ボタンをクリックしてください
-
-   .. image:: ./media/M1L2CreateNodeButton.png
-      :width: 200
-
-#. ダイアログに従って進め、"controller-3" インスタンスを追加するため、"Name" と "Hostname または IP Address" を指定してください
-   Click the **Save** button.
+#. ``Add an existing instance`` を選択し、"nginxplus-4" インスタンスを追加するため、項目に以下の内容を指定してください
 
    +-------------------+-----------------------+
    |        Field      |      Value            |
    +===================+=======================+
    |  Name             |  ``controller-3``     |
    +-------------------+-----------------------+
-   |  Hostname or IP   |  ``10.1.1.10``        |
+   |  Location   |  ``10.1.1.10``        |
+   +-------------------+-----------------------+
+   | Allow insecure server connections to NGINX Controller using TLS| チェック |
    +-------------------+-----------------------+
 
-   .. image:: ./media/M1L2CreateNodeDialogue.png
-      :width: 800
+#. ``Instructions`` に表示されるCURLコマンドの内容をコピーしてください。次のステップで利用します
 
-#. **View** にインストール手順が記載されています。インストールコマンドと "join key" をクリップボードにコピーしてください。 
-
-   .. image:: ./media/M1L2NodeViewButton.png
-      :width: 800
-
-   .. image:: ./media/M1L2NodeJoinCommand.png
-      :width: 800
-
-
-
-View the results
-----------------
-
-#. Chromeを開き、**Cluster** の "Cluster Configuration" を確認してください
-
-   .. image:: ./media/M1L2NodesConfigured.png
-      :width: 800
-
-(Optional) Kubernetes Cluster の確認
-------------------------------------------
-
-もし、Kubernetes (k8s) について確認されたい場合、NGINX Controllerによって作成される k8s クラスタの情報を書く飲することが可能です
-
-#. 先程ログインした PuTTY の "controller-3" への接続を利用するか、新たにNGINX Controllerインスタンスのいずれか一つに接続してください
-
-   .. image:: ./media/M1L2puttyc1.png
-      :width: 400
-
-   .. IMPORTANT::
-      もし、Puttyがサーバのホスト鍵に関する警告を示した場合、接続のため **Yes** をクリックしてください
-      これは、ラボ環境の各ホストでユニークなhost keyを生成するため生じるものです
-
-#. クラスタノードを表示します
-
-   .. code-block:: shell
-
-      kubectl get nodes 
-
-   .. image:: ./media/M1L2Nodes.png
-      :width: 800
-
-   .. NOTE::
-      コマンドの出力結果として、k8s クラスタに3つのノードが存在することが確認できます
-
-#. デプロイされたポッドを確認する
-
-   .. code-block:: shell
-
-      kubectl get pods -n nginx-controller -o wide
-      
-   .. image:: ./media/M1L2K8s.png
-      :width: 1024
-
-   .. NOTE::
-      コマンドの出力結果として、NGINX Controllerが複数のPodを3つのノードに対してデプロイしていることが確認できます
-      ("NODE"カラムを確認ください)
-
-.. _Reference:
-
-追加情報
---------------------
-    "load balancer"設定は今後リリースされるNGINX Controllerにて設定可能となる予定です
-    追加の情報はラボの :ref:`Reference` を参照してください
-      The "load balancer" option will be configurable in a future Controller release.
-      See this lab's Additional :ref:`Reference` for more details.
-      
-将来リリースされるNGINX Controllerでは、API Gateway Kubernetes serviceを公開するために利用するfloating self-ipが "load balancer" によって作成される予定です。
-オンプレミス環境ではL2 Failoverをサポートする `MetalLB`_ の構成、クラウド環境では k8sの type  `LoadBalancer`_を用いたクラウドネイティブな外部向けロードバランサー機能を利用する想定となります。
-
-.. _MetalLB: https://metallb.universe.tf/
-.. _LoadBalancer: https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer
