@@ -131,7 +131,7 @@ View the results
 (Optional) Kubernetes Cluster の確認
 ------------------------------------------
 
-もし、Kubernetes (k8s) について確認されたい場合、NGINX Controllerによって作成される k8s クラスタの情報を書く飲することが可能です
+もし、Kubernetes (k8s) について確認されたい場合、NGINX Controllerによって作成される k8s クラスタの情報を確認することが可能です
 
 #. 先程ログインした PuTTY の "controller-3" への接続を利用するか、新たにNGINX Controllerインスタンスのいずれか一つに接続してください
 
