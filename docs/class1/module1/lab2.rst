@@ -71,8 +71,7 @@ Lab 2 - NGINX Controller の冗長化
    .. image:: ./media/M1L2CreateNodeButton.png
       :width: 200
 
-#. ダイアログに従って進め、"controller-3" インスタンスを追加するため、"Name" と "Hostname または IP Address" を指定してください
-   Click the **Save** button.
+#. ダイアログに従って進め、"controller-3" インスタンスを追加するため、"Name" と "Hostname または IP Address" を指定してください。**Save** ボタンをクリックしてください
 
    +-------------------+-----------------------+
    |        Field      |      Value            |
