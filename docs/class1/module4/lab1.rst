@@ -1,26 +1,26 @@
-Lab 1 - Application Security (UI)
+Lab 1 - Application Security (GUI)
 #################################
 
-The goal of this lab is to explore the Controller Application Security module through the application of policy aided by related events and metrics.
+このラボのゴールは、ポリシーが適用されたアプリケーションに関連するイベントやメトリクスを確認し、NGINX Controller Application Security Moduleを理解することでうｓ
 
 .. IMPORTANT::
-    Estimated completion time: 15 minutes
+    想定時間: 15分
 
 .. NOTE::
-    Lab instructions are written as if the student is executing the steps
-    from the Windows jumphost -- ``jumphost-1``. See the :ref:`overview` for connection details.
+    このLabの手順はラボを実施する方がWindows jumphost -- ``jumphost-1`` から操作する手順を示しています。
+    接続方法についてはこちらを参照ください。 :ref:`overview` 
 
-Enable Security on a Component
+Component の Security を有効にする
 ------------------------------
 
-#. Open Chrome Browser.
+#. Chromeを開きます
 
-#. Access the NGINX Controller UI through the provided bookmark.
+#. BookmarkからNGINX Controller UIにアクセスしてください
 
    .. image:: ../media/ControllerBookmark.png
       :width: 600
 
-#. Login with the ``Natasha Romanoff`` account who is an (unprivileged) NGINX Controller user.
+#. NGINX Controllerの特権を持たないユーザである  ``Natasha Romanoff`` でログインしてください
 
 +---------------------------+-------------------+
 |      Username             |    Password       |
@@ -31,103 +31,110 @@ Enable Security on a Component
     .. image:: ../media/ControllerLogin-Natasha.png
         :width: 400
 
-#. Navigate to the **Services** menu.
+#.  **Services** メニューを開きます
 
     .. image:: ../media/Tile-Services.png
         :width: 200
 
-#. Select the **Apps** tile.
+#. **Apps** を選択します
 
     .. image:: ../media/Services-Apps.png
         :width: 200
 
-#. Open the "Trading Application (CAS)" app. 
+#. "Trading Application (CAS)" app を開いてください 
 
     .. image:: ./media/TradingMainCASApp.png
         :width: 600
 
-#. The overview presented features aggregated views of data from all Components of the App.
+#. Overview にはAppのすべてのコンポーネントから集約されたデータやグラフが表示されます
 
     .. image:: ./media/TradingMainCASComponentOverview.png
         :width: 600
 
 
-#. In this lab we want to ensure that WAF is enabled on this component. Select the **Components** section, then click **Trading Main Component**.
+#. このラボでは、コンポーネントでWAFが有効になっていることを確認します。
+   **Components** セクションを選択し、**Trading Main Component** をクリックします
 
     .. image:: ./media/TradingMainCASComponent.png
         :width: 600
 
-#. Click the **Edit Component** button.
+#. **Edit Component** ボタンをクリックします
 
     .. image:: ./media/TradingMainCASEditComponent.png
         :width: 600
 
-#. Click the **Security** link. Notice the WAF has already been enabled for this component. A Checkbox should appear in the toggle button. DevOps/Developers who own the "App" have permissions to enable/disable WAF (recall you are logged in as "Natasha" -- a member of "nginx-controller-users").
+#. **Security** リンクをクリックします。このコンポーネントですでにWAFが有効になっていることが確認できます。
+   トグルボタンにチェックマークが表示されています。アプリケーションを管理する DevOps / 開発者 がWAFの有効・無効を制御することができることを確認してください。
+    ("Natasha"でログインしたことを思い出してください)
     
     .. NOTE:: 
-        Controller allows a self-service approach for enabling WAF to protect configured apps.
+        NGINX Controllerは設定したappに対し、self-serviceでWAFの有効・無効機能を提供しています
     
     .. NOTE:: 
-        Since we intend to first enable the WAF in the Retail Development environment, this represents minimal risk to the Acme Financial corporation. For this reason, the **Monitor Only** selector is off in this component.
+        Retail Development environmentでWAFを有効にしたことにより、Acme Financial corporationにおけるリスクを最小化することができています。
+        これは、コンポーネントの **Monitor Only** がオフになっていることが示しています 
 
     .. image:: media/TradingMainCASComponentEnableWAF.png
         :width: 800
 
 
-Examine Security Analytics
+Security Analytics を確認する
 --------------------------
 
-#. In the "Trading Application (CAS)" app, select the **Components** section, then click **Trading Main Component**.
+#. "Trading Application (CAS)" appで、**Components** セクションを選択し、**Trading Main Component** をクリックしてください
 
     .. image:: ./media/TradingMainCASComponent.png
         :width: 600
 
-#. Click the **Security Analytics** link. This will display security-related insights for the currently selected Component.
+#. **Security Analytics** リンクをクリックします。ここで選択したコンポーネントに関するセキュリティに関する統計情報などが表示されます
         
     .. image:: ./media/TradingMainCASSecurityAnalytics.png
         :width: 600
 
-#. Select the **Last 30 minutes** dropdown for this display. Scroll down to **WAF Suspicious vs Normal Traffic**. Since traffic generation has been running against this component, you should see graph data immediately. This view allows an operator to quickly see spikes in suspicious traffic over the selected time interval. Look for a spike in security events that may be appearing when compared to previous period (**Prev day** is selected by default). Hover your cursor over the graph and note the approximate time of this spike for use in the next step. 
-
+#. ドロップダウンリストから **Last 30 minutes** を選択します。**WAF Suspicious vs Normal Traffic** まで画面をスクロールします。
+   トラフィックジェネレータがこのコンポーネントに対し動作した事により、グラフが表示されていることが確認できます。
+   これはオペレータが指定した時間間隔の中で悪意あるトラフィックの急激な増加を直ちに知ることができます。以前の時間と比較しし、セキュリティイベントの急激な変化ないか確認してください(**Prev Day** がデフォルトで選択されています) 次のステップで利用するため、グラフの急激な増加が見られた地点にマウスを置き、その発生時間をメモしてください
+   
     .. image:: media/TradingMainCASSecurityAnalyticsLast30.png
         :width: 800
 
-#. Scroll down and explore the "Top URIs Targeted" list. This list depicts the top URIs targeted with attacks. Filtering is available through options presented in the drop-down box on the right.
+#. "Top URIs Targeted" list" まで画面をスクロールしてください。このリストは攻撃の対象となったURIを多いものから表示します。
+   右のドロップダウンに表示されるオプションからフィルタリング機能を利用することが可能です
 
     .. image:: media/AnalyticsTopURIs.png
         :width: 800
 
 
-#. Scroll down to explore "WAF Top Threats" list. This list shows the WAF top threats based on **Attack Types** (default selection) or based on **Signatures**. Filtering is available through options presented in the drop-down box on the right.
+#. "WAF Top Threats" リストを確認するため、画面をスクロールしてください。このリストは、**Attack Types** (default selection)や、**Signatures** を元にした脅威をリストにしたものです
+   右のドロップダウンに表示されるオプションからフィルタリング機能を利用することが可能です
 
     .. image:: media/AnalyticsTopThreats.png
         :width: 800
 
 .. NOTE::
-    Depending on the amount of event data, the "WAF Top Threats" list may take some time to load. 
+    イベントデータの量に依存して、"WAF Top Threats" リストの表示に時間がかかる場合があります
 
 .. NOTE::
-    Even with WAF set to monitor only mode, analytics and event data can be used to identify potential attacks. 
-    Data can be sent to external systems such as Splunk or Datadog.
+    WAFをMonitor Only Modeでデプロイした場合にも、Analytics や イベントのデータは潜在的な攻撃を判断するために有用です。また、これらのデータをSplunkやDatadogに送付することが可能です
 
-
-Examine Security Events
+Security Events を確認する
 -----------------------
 
-#. Click on **Security Events**. Here is where security events are being logged, complete with request details. 
+#. **Security Events** をクリックしてください。ここはセキュリティイベントが記録されており、リクエストの詳細などが確認できます
 
     .. image:: ./media/TradingMainCASComponentEvents.png
 
-#. Search by dates and times based on the observed range in the analytics graph. Click the dropdown which contains the value of **Last 24 hours** currently selected. Click **Last 5 minutes**. 
+#. 対象となる日時を選択し、グラフを確認します。**Last 24 hours** と現在表示されているドロップダウンリストをクリックし、**Last 5 minutes** を選択します 
 
     .. image:: ./media/TradingMainCASComponentEventsLast5.png
 
-#. To inspect the security events details, click on a particular row. The event details tray will appear from the right side of the window.
+#. より詳細なセキュリティの情報を確認するため、特定の行をクリックします。画面右側にイベントの詳細が表示されます
 
     .. image:: ./media/TradingMainCASComponentEventsDetails.png
 
 
-#. Scroll down the details tray to the **THREAT ORIGIN** section and locate the **Remote Address** field. Hover over this field with your cursor and click on the **funnel** icon. This action creates a filter. Now the "Security Events" list is filtered on "remote address".
+#. **THREAT ORIGIN** セクションで詳細を確認するため画面をスクロールし、**Remote Address** のフィールドを確認してください。マウスカーソルをこの項目に合わせ、**funnel** アイコンをクリックしてください。この操作により、フィルタを作成します。この操作により、"Security Events" リストを "remote address" でフィルタしました
+
 
     .. image:: ./media/TradingMainCASComponentEventsDetailsIP.png
         :width: 400
@@ -135,60 +142,63 @@ Examine Security Events
     .. NOTE::
         Notice that many "Event Details" data points can be used as filters. This powerful filtering feature allows for quick pattern detection.
 
-#. You are now presented with a list of security events filtered by a specific remote IP address. Based on the filtered list, does this look like a legitimate application user?
+#. 現在特定のIPアドレスでフィルタされたセキュリティイベントリストが表示されています。
+   フィルタされたリストから、アクセスもととなるユーザは妥当なユーザであるかどうか確認してください
 
     .. image:: ./media/TradingMainCASComponentEventsDetailsIPFiltered.png
 
-#. Click the **Security Analytics** link. Click the **WAF Tuning** link to view events by signature IDs.
+#. **Security Analytics** リンクをクリックしてください。イベントに関連する Signature ID を確認するため、**WAF Tuning** リンクをクリックしてください。
 
     .. image:: ./media/TradingMainCASComponentTuning.png
     
-#. Click on the signature with the ID of **200013018**. Notice a high percentage of violations. Could this perhaps be a request that is being blocked unintentionally? These are usually referred to as "false positives". 
-    
-#. Click the **View Events** button to examine the requests that triggered this signature to determine if this is a false positive.
+#. ID **200013018** のSignatureをクリックしてください。高いパーセンテージを示すViolationとして表示されています。
+   これはリクエストに対する意図しないブロックでしょうか？"False Positive(誤検知)"が発生している可能性もあります
+
+#. **View Events** ボタンをクリックし、このリクエストが誤検知であるかどうか確認するためリクエストの情報を確認します
     
     .. image:: ./media/TradingMainCASComponentTuningSelect.png
 
-#. You are now presented with a list of security events filtered by the attack signature selected in the previous step. Click on one of the rejected request events and view the details in the tray on the right.
+#. 前のステップで、Attack Signatureでフィルタされたセキュリティイベントのリストが表示されています。拒否されたリクエストの一つをクリックし、右に表示される詳細を確認してください
 
     .. image:: ./media/TradingMainCASComponentEventsDetailsSigFiltered.png
 
 
-#. Scroll down to the **THREAT TARGET** section to view the details of that rejection. Note the highlighted portion of the **Request Detail** as follows. This is the actual GET request that resulted in the WAF rejection:
+#. 拒否の詳細を確認するため **THREAT TARGET** セクションを確認してください。以下の **Request Detail** でハイライトされた部分を確認してください。これは実際にWAFが拒否したGETリクエストです:
 
     .. image:: ./media/TradingMainCASComponentEventsRequest.png
 
-
-#. In Chrome, open a new tab and browse to the application using the request observed in the security event in question. The url to use is ``http://trading.acmefinancial.net/wp-admin/admin-post.php?do_reset_wordpress``. Observe the user experience when this request is made. What did you see? Notice a "support ID" appears in the response. This is an event correlation ID that also appears in the event details.
+#. クロームで新しいタプを開き、開発者ツールを有効にした状態でアプリケーションにアクセスしてください
+   URLは `http://trading.acmefinancial.net/wp-admin/admin-post.php?do_reset_wordpress`` です。このリクエストでユーザにどの様に見えるか、動作を確認してください。
+   何が見えましたでしょうか？ レスポンスに "Support ID" が確認できます。これはセキュリティログの詳細にも記録されるこのイベントを示すIDです
 
     .. image:: ./media/TradingMainCASComponentBlocked.png
 
-#. The assumption for the purpose of this lab is that this request is a false positive. In the Controller Chrome tab, locate and copy the signature ID from the event details tray for use in the next section.
+#. このラボではリクエストが誤検知であると想定して確認を進めました。NGINX Controllerの管理画面で、次のセクションで利用するため、Signature IDをイベントの詳細からコピーしてください
 
 .. image:: ./media/TradingMainCASComponentEventsCopy.png
 
 
-Tune the WAF policy
+WAF policy のチューニング
 -------------------
 
-#. Click **Edit Config** to edit the component's security configuration.
+#. コンポーネントのSecurity Configurationを変更するため、**Edit Config** をクリックしてください
 
     .. image:: ./media/TradingMainCASComponentEventsQuickEdit.png
     
-#. Click **Security** and paste the signature ID ``200013018`` into the "Disable Signatures" text box.
+#. **Security** をクリックし、signature ID ``200013018`` を "Disable Signatures" テキストボックスに貼り付けてください
     
     .. image:: ./media/TradingMainCASComponentSignature.png
 
 
-#. Click **Submit** to update the component's security policy.
+#. コンポーネントのセキュリティポリシーを更新するため **Submit** をクリックしてください
 
     .. image:: ../media/Submit.png
         :width: 100
 
 .. NOTE::
-    When the WAF has been successfully configured on the component, you will see this:
+    WAF コンポーネントの設定が完了すると、以下のように見えます:
 
-#. Wait at least 30 seconds, then attempt the same request in your browser again. Note that the request is now permitted (although results in a 404 status result).
+#. 少なくとも30秒間の間を開け、再度ブラウザでの接続を試してください。現在はリクエストが許可されることを確認してください(出力は 404エラー ですがWAFによる制御は行われない状態となっています).
 
     .. image:: ./media/TradingMainCASComponentNotBlocked.png
 
