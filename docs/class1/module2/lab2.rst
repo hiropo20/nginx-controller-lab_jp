@@ -81,7 +81,7 @@ Postmanを利用して Component のデプロイ
       :width: 800
 
    .. NOTE::
-      NGINX Controllerは "eventual consistency model" に従います。APIはPostmanのリクエストに "202 Accepted" ステータスコードを変えあします。
+      NGINX Controllerは "eventual consistency model" に従います。APIはPostmanのリクエストに "202 Accepted" ステータスコードを変えします。
       NGINX Controllerは現状動作し、意図した状態であることが確認できます
 
    .. image:: ./media/M2L2PMconfig.png
