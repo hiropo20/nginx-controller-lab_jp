@@ -1,35 +1,37 @@
 NGINX Controller Lab Guide
 ==========================
 
-![Build Docs](https://github.com/nginxinc/nginx-controller-lab/workflows/Build%20Docs/badge.svg)
+[Original Document](https://github.com/nginxinc/nginx-controller-lab)
 
 Introduction
 ------------
 
-This repo contains the documentation sources for the NGINX Controller 3.x UDF lab. Tarball builds of the html build output are also available as Releases. GitHub Actions builds the documentation on each Pull Request. A Push to the `main` branch will both build the documentation and create a Release.
+このレポジトリはNGINXが管理するNGINX Controller 3.x UDF向けドキュメントの日本語版です。最新の内容はOriginalを参照してください。
 
-Setup
+Release
+------------
+
+|Date||
+|----|----|
+|2021/10/18| 1.0.57の内容を日本語化。本レポジトリはこの内容を基準とします|
+
+
+本Lab Guide 表示用 Container Setup 方法
 -----
 
-1. Download or `git clone` the nginx-controller-lab
-2. Download and install Docker CE (https://docs.docker.com/engine/installation/)
-3. Build the sample docs `./containthedocs-build.sh`. The first time you build
-   a container (~1G in size) will be downloaded from Docker Hub.
-4. Open the `docs/_build/html/index.html` file on you system in a web browser
+#. Download または `git clone` により 本 nginx-controller-lab のファイルを取得してください
+#. Docker CE (https://docs.docker.com/engine/installation/) をダウンロード＆インストール
+#. `./containthedocs-build.sh` を用いてサンプルドキュメントを作成。 初回作成時にはDocker Hubよりコンテナイメージ(~1GB)がダウンロードされます
+#. `docs/_build/html/index.html` の内容をWebブラウザで開いてください
 
-
-Build Scripts
+Build Scripts (Reffer to Original Document)
 -------------
 
-The repo includes build scripts for common operations:
+以下のコマンド群が管理されています
 
-- `containthedocs-bash.sh`: Run to container with a BASH prompt
-- `containthedocs-build.sh`: Build HTML docs using `make -C docs html` to
-  `docs/_build/html`
-- `containthedocs-clean.sh`: Clean the build directory using
-  `make -C docs clean`
-- `containthedocs-cleanbuild.sh`: Clean the build directory and build HTML
-  docs using `make -C docs clean html`
-- `containthedocs-convert.sh`: Convert a Word `.docx` file to rST
-- `containthedocs-pdf.sh`: Build PDF docs using `make -C docs latexpdf` to
-  `docs/_build/latex`
+- `containthedocs-bash.sh`: BASH Scriptと共にコンテナを実行する
+- `containthedocs-build.sh`: `make -C docs html` コマンドを使い、 `docs/_build/html` にドキュメントを生成する
+- `containthedocs-clean.sh`: 作成してディレクトリを `make -C docs clean` コマンドを使い削除する
+- `containthedocs-cleanbuild.sh`: 作成したディレクトリとHTLM Docsを `make -C docs clean html` コマンドを使い削除する
+- `containthedocs-convert.sh`: `.docx` ファイルを rST にコンバートする
+- `containthedocs-pdf.sh`: PDF ドキュメントを `make -C docs latexpdf` コマンドを用いて `docs/_build/latex` に作成する
