@@ -1,43 +1,42 @@
-Lab 6 - Launch Security Traffic Generation
+Lab 6 - Security トラフィックジェネレータ を実行する
 ################################################
 
-The goal of this lab is to launch traffic generation for the security enabled data path.
+このラボのゴールはセキュリティ機能が有効となったデータパスに対し、トラフィックジェネレータを実行することです
 
 .. NOTE::
-    This is less of a lab exercise and more of ensuring your deployment is prepared for the next lab.
-    This is critical to complete for the remaining exercises.
+    このラボの内容は少なく、動作環境の主な確認は次のラボで実施します
+    ただし、今後のラボで必要となる作業のため必ず完了してください
 
 .. IMPORTANT::
-    Estimated completion time: 5 minutes
+    想定時間: 5分
 
 .. NOTE::
-    Lab instructions are written as if the student is executing the steps
-    from the Windows jumphost -- ``jumphost-1``. See the :ref:`overview` for connection details.
+    このLabの手順はラボを実施する方がWindows jumphost -- ``jumphost-1`` から操作する手順を示しています。
+    接続方法についてはこちらを参照ください。 :ref:`overview` 
 
     .. _loadgen:
 
-Start WAF Traffic Generation for Analytics
+Analytics に利用する WAF Traffic Generation の実行
 -------------------------------------------
 
 .. IMPORTANT::
-   This step **MUST** be completed for statistics to be available in Module 3. 
-
-#. Login to the "loadgen-1" instance. Using "PuTTY" select the **loadgen-1** saved session and click **Open**.
+   このステップは Module3 のAnalytics / 統計情報の確認のため必須の内容となります
+   
+#. "loadgen-1" インスタンスにログインしてください。"PuTTY"でsaved sessionに表示される **loadgen-1** を選択し **Open** をクリックしてください 
 
    .. image:: ./media/M2L6loadgenssh.png
       :width: 400
 
    .. IMPORTANT::
-      If you receive a PuTTY warning regarding the server's host key click **Yes** to connect.
-      This is caused by a unique host key being generated for each UDF deployment.
+      もし、Puttyがサーバのホスト鍵に関する警告を示した場合、接続のため **Yes** をクリックしてください これは、ラボ環境の各ホストでユニークなhost keyを生成するため生じるものです
 
-#. Execute the following "docker" command to generate traffic against the demo application deployed in this lab.
+#. 以下の "docker" commandでラボでデプロイされたでもアプリケーションに対しトラフィックを生成してください
 
    .. code-block:: bash
 
       $ sudo docker start wrk_trading.acmefinancial.net-cas
 
-#. The result of the command should echo the container name ("wrk_trading.acmefinancial.net-cas").
+#. コマンドの実行が完了するとコンテナ名が出力されます("wrk_trading.acmefinancial.net-cas").
 
    .. image:: ./media/M2L6loadgenresult.png
       :width: 600
