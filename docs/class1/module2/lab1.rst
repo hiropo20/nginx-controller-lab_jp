@@ -16,7 +16,7 @@ NGINX Controller が持つオブジェクトのコンセプト
 ---------------------------------
 このセクションではNGINX Controllerのオブジェクトについて説明します。BIG_IPやNGINXのコンセプトや記述方法と比較してください
 
-   .. image:: ./media/M2L1ServOver.png
+   .. image:: ./media/L1Controller-ObjectConcept.png
       :width: 600
 
 Environments
