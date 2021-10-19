@@ -92,7 +92,7 @@ Lab 2 - NGINX Controller の冗長化
    .. image:: ./media/M1L2NodeJoinCommand.png
       :width: 800
 
-Run the install command to join the instance to the cluster
+クラスタにインスタンスを追加するため install command を実行する
 -----------------------------------------------------------
 
 #. "controller-3" インスタンスにログインしてください。"PuTTY" を開き、保存済みのホストより **controller-3** を選択し、**Open** をクリックしてください
