@@ -16,7 +16,7 @@ NGINX Plus のインストール
 
 #. "nginxplus-4" インスタンスにログインしてください。"PuTTY" を開き、保存済みのホストより **nginxplus-4** を選択し、**Open** をクリックしてください
 
-   .. image:: ./media/M1L2puttyc3.png
+   .. image:: ./media/L3Putty.png
       :width: 400
 
    .. IMPORTANT::
@@ -95,11 +95,14 @@ NGINX PlusのインスタンスをNGINX Controllerに追加する
 
 #. 画面右上の **Create** ボタンをクリックしてください
 
-   .. image:: ./media/M1L2ClusterTile.png
+   .. image:: ./media/L3Controller-Infra-Create.png
       :width: 800
 
 #. ``Add an existing instance`` を選択し、"nginxplus-4" インスタンスを追加するため、項目に以下の内容を指定してください
 
+   .. image:: ./media/L3Controller-CreateInstance1.png
+      :width: 800
+    
    +----------------------------------------------------------------+---------------------------------------------+
    |Field                                                           | Value                                       |
    +================================================================+=============================================+
@@ -110,21 +113,35 @@ NGINX PlusのインスタンスをNGINX Controllerに追加する
    | Allow insecure server connections to NGINX Controller using TLS| Enable(Check)                               |
    +----------------------------------------------------------------+---------------------------------------------+
 
-
-
+   .. image:: ./media/L3Controller-CreateInstance2.png
+      :width: 800
+      
 #. ``Instructions`` に表示されるCURLコマンドの内容をコピーしてください。次のステップで利用します。コピーが完了しましたら ``Close`` をクリックして画面を閉じてください
 
-   .. code-block:: bash
+   .. image:: ./media/L3Controller-CreateInstance3.png
+      :width: 800
 
-    $ curl -k -sS -L https://10.1.1.5/install/controller-agent > install.sh && \
-sudo API_KEY='1ba48d798559194744c0ec836f1f0eee' sh ./install.sh -i nginxplus-4 -l west
+#. 前の手順で利用した "nginxplus-4" のターミナル、または "PuTTY" を起動し再度 **nginxplus-4** を開いてください。``Instructions`` からコピーしたcurlコマンドを実行してください。コマンドを実行するとプロンプトで実行を進めて良いか確認するプロンプトが複数回表示されます。内容を確認して **y** を入力してください。以下の内容が表示されれば正常に完了です
+
+   .. image:: ../media/L3ControllerAgent-InstallComplete.png
+      :width: 400
+
+#. ChromeでNGINX Controllerの **Infrastructure** を開き、新たに "nginxplus-4" が追加されていることを確認してください。その他ステータスが正しく閲覧できることを確認してください
+
+   .. image:: ./media/L3Controller-Infra-Instances1.png
+      :width: 800
+      
+   .. image:: ./media/L3Controller-Infra-Instances2.png
+      :width: 800
+
+   .. image:: ./media/L3Controller-Infra-Instances3.png
+      :width: 800
 
 
-#. 前の手順で利用した "nginxplus-4" のターミナル、または "PuTTY" を開き再度 **nginxplus-4** を開いてください。``Instructions`` からコピーしたcurlコマンドを実行してください。コマンドを実行するとプロンプトで実行を進めて良いか確認するプロンプトが複数回表示されます。内容を確認して **y** を入力してください。
+#. 表示名（Display Name)などを変更する場合は対象インスタンスをクリックし、 **Edit** をクリックしてください
 
-
-#. ChromeでNGINX Controllerの **Infrastructure** を開き、新たに "nginxplus-4" が追加されることを確認してください
-
-
+   .. image:: ./media/L3Controller-Infra-Instances4.png
+      :width: 800
+      
 .. _NGINX Plusのインストール手順(Ubuntu): https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/#installing-nginx-plus-on-ubuntu
 .. _Tech Spec: https://docs.nginx.com/nginx-controller/admin-guides/install/nginx-controller-tech-specs/#nginx-plus-instances
