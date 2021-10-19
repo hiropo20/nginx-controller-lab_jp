@@ -1,4 +1,4 @@
-Lab 3 - NGINX Plus の追加 (作成中)
+Lab 3 - NGINX Plus の追加
 ############################################
 
 このラボのゴールは新たにNGINX Controllerの管理対象としてNGINX Plusを追加することです。
@@ -123,7 +123,7 @@ NGINX PlusのインスタンスをNGINX Controllerに追加する
 
 #. 前の手順で利用した "nginxplus-4" のターミナル、または "PuTTY" を起動し再度 **nginxplus-4** を開いてください。``Instructions`` からコピーしたcurlコマンドを実行してください。コマンドを実行するとプロンプトで実行を進めて良いか確認するプロンプトが複数回表示されます。内容を確認して **y** を入力してください。以下の内容が表示されれば正常に完了です
 
-   .. image:: ../media/L3ControllerAgent-InstallComplete.png
+   .. image:: ./media/L3ControllerAgent-InstallComplete.png
       :width: 400
 
 #. ChromeでNGINX Controllerの **Infrastructure** を開き、新たに "nginxplus-4" が追加されていることを確認してください。その他ステータスが正しく閲覧できることを確認してください
