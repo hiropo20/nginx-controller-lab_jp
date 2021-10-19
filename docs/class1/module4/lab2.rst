@@ -103,5 +103,5 @@ Postmanを用いて、Component の Security Settings を更新する
     .. image:: ./media/PMTradingMainCASMonitoringVerifyComponent.png
 
 
-おめでとうございます！！ |classbold| ラボは完了完了しました！！
+おめでとうございます！！ |classbold| ラボはこれで完了です。
 --------------------------------------------------------------------------------------------------------------------
