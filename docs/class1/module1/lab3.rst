@@ -53,6 +53,7 @@ NGINX Plus のインストール
       $ sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
       $ sudo apt-get update
 
+
 #. NGINX Plus をインストールします。NGINX Controller に対応したVersionとしてR24をインストールします。NGINX Controllerに対応するNGINX PlusのVersionは `Tech Spec`_ を確認してください
 
    .. code-block:: bash
@@ -99,15 +100,17 @@ NGINX PlusのインスタンスをNGINX Controllerに追加する
 
 #. ``Add an existing instance`` を選択し、"nginxplus-4" インスタンスを追加するため、項目に以下の内容を指定してください
 
-   +-------------------+-----------------------+
-   |        Field      |      Value            |
-   +===================+=======================+
-   |  Name             |  ``nginxplus-4``     |
-   +-------------------+-----------------------+
-   |  Location   |  ``West Coast Data Center (OTHER_LOCATION)``        |
-   +-------------------+-----------------------+
-   | Allow insecure server connections to NGINX Controller using TLS| チェック |
-   +-------------------+-----------------------+
+   +----------------------------------------------------------------+---------------------------------------------+
+   |Field                                                           | Value                                       |
+   +================================================================+=============================================+
+   | Name                                                           | ``nginxplus-4``                             |
+   +----------------------------------------------------------------+---------------------------------------------+
+   | Location                                                       | ``West Coast Data Center (OTHER_LOCATION)`` |
+   +----------------------------------------------------------------+---------------------------------------------+
+   | Allow insecure server connections to NGINX Controller using TLS| Enable(Check)                               |
+   +----------------------------------------------------------------+---------------------------------------------+
+
+
 
 #. ``Instructions`` に表示されるCURLコマンドの内容をコピーしてください。次のステップで利用します。コピーが完了しましたら ``Close`` をクリックして画面を閉じてください
 
@@ -116,7 +119,9 @@ NGINX PlusのインスタンスをNGINX Controllerに追加する
     $ curl -k -sS -L https://10.1.1.5/install/controller-agent > install.sh && \
 sudo API_KEY='1ba48d798559194744c0ec836f1f0eee' sh ./install.sh -i nginxplus-4 -l west
 
+
 #. 前の手順で利用した "nginxplus-4" のターミナル、または "PuTTY" を開き再度 **nginxplus-4** を開いてください。``Instructions`` からコピーしたcurlコマンドを実行してください。コマンドを実行するとプロンプトで実行を進めて良いか確認するプロンプトが複数回表示されます。内容を確認して **y** を入力してください。
+
 
 #. ChromeでNGINX Controllerの **Infrastructure** を開き、新たに "nginxplus-4" が追加されることを確認してください
 
