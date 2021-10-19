@@ -41,6 +41,7 @@ NGINX Plus のインストール
 #. NGINX Plus インストールに必要となる手順を実施します。手順の各コマンドの役割は `NGINX Plusのインストール手順(Ubuntu)`_ を参照してください
 
    .. code-block:: bash
+   
       $ sudo mkdir -p /etc/ssl/nginx
       $ sudo cp nginx-repo.* /etc/ssl/nginx/
       $ sudo wget https://cs.nginx.com/static/keys/nginx_signing.key && sudo apt-key add nginx_signing.key
@@ -55,6 +56,7 @@ NGINX Plus のインストール
 #. NGINX Plus をインストールします。NGINX Controller に対応したVersionとしてR24をインストールします。NGINX Controllerに対応するNGINX PlusのVersionは `Tech Spec`_ を確認してください
 
    .. code-block:: bash
+   
       $ sudo apt-get install nginx-plus=24-2~focal
       $ nginx -v
 
@@ -100,16 +102,21 @@ NGINX PlusのインスタンスをNGINX Controllerに追加する
    +-------------------+-----------------------+
    |        Field      |      Value            |
    +===================+=======================+
-   |  Name             |  ``controller-3``     |
+   |  Name             |  ``nginxplus-4``     |
    +-------------------+-----------------------+
-   |  Location   |  ``east``        |
+   |  Location   |  ``West Coast Data Center (OTHER_LOCATION)``        |
    +-------------------+-----------------------+
    | Allow insecure server connections to NGINX Controller using TLS| チェック |
    +-------------------+-----------------------+
 
-#. ``Instructions`` に表示されるCURLコマンドの内容をコピーしてください。次のステップで利用します
+#. ``Instructions`` に表示されるCURLコマンドの内容をコピーしてください。次のステップで利用します。コピーが完了しましたら ``Close`` をクリックして画面を閉じてください
 
-#. 前の手順で利用した "nginxplus-4" のターミナル、または "PuTTY" を開き再度 **nginxplus-4** を開いてください。``Instructions`` からコピーしたcurlコマンドを実行してください
+   .. code-block:: bash
+
+    $ curl -k -sS -L https://10.1.1.5/install/controller-agent > install.sh && \
+sudo API_KEY='1ba48d798559194744c0ec836f1f0eee' sh ./install.sh -i nginxplus-4 -l west
+
+#. 前の手順で利用した "nginxplus-4" のターミナル、または "PuTTY" を開き再度 **nginxplus-4** を開いてください。``Instructions`` からコピーしたcurlコマンドを実行してください。コマンドを実行するとプロンプトで実行を進めて良いか確認するプロンプトが複数回表示されます。内容を確認して **y** を入力してください。
 
 #. ChromeでNGINX Controllerの **Infrastructure** を開き、新たに "nginxplus-4" が追加されることを確認してください
 
