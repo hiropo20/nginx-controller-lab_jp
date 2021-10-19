@@ -138,7 +138,7 @@ NGINX PlusのインスタンスをNGINX Controllerに追加する
       :width: 800
 
 
-#. 表示名（Display Name)などを変更する場合は対象インスタンスをクリックし、 **Edit** をクリックしてください
+#. 表示名(Display Name)などを変更する場合は対象インスタンスをクリックし、 **Edit** をクリックしてください
 
    .. image:: ./media/L3Controller-Infra-Instances4.png
       :width: 800
