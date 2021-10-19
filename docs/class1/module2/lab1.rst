@@ -12,7 +12,7 @@ NGINX Controllerを用いた「app-centric(アプリケーション中心)」の
     接続方法についてはこちらを参照ください。 :ref:`overview` 
 
 
-NGINX Controller が持つ、オブジェクトのコンセプト
+NGINX Controller が持つオブジェクトのコンセプト
 ---------------------------------
 このセクションではNGINX Controllerのオブジェクトについて説明します。BIG_IPやNGINXのコンセプトや記述方法と比較してください
 
