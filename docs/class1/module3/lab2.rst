@@ -85,7 +85,7 @@ Critical Analytics
       NGINX Controllerは設定したappに対し、self-serviceでWAFの有効・無効機能を提供しています
       
 #. **Trading Main Component** をクリックし、**Critical Analytics** を左のナビゲーションから選択してください。
-   右上の**Breakout By** のドロップダウンリストから **Request Outcome Reason** を選択してください。
+   右上の **Breakout By** のドロップダウンリストから **Request Outcome Reason** を選択してください。
    画面を下部へスクロールし、"HTTP Requests (SUM)" のグラフを確認ください
    
    |image7|
