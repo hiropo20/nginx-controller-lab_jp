@@ -176,7 +176,7 @@ View the results
       See this lab's Additional :ref:`Reference` for more details.
       
 将来リリースされるNGINX Controllerでは、API Gateway Kubernetes serviceを公開するために利用するfloating self-ipが "load balancer" によって作成される予定です。
-オンプレミス環境ではL2 Failoverをサポートする `MetalLB`_ の構成、クラウド環境では k8sの type  `LoadBalancer`_を用いたクラウドネイティブな外部向けロードバランサー機能を利用する想定となります。
+オンプレミス環境ではL2 Failoverをサポートする `MetalLB`_ の構成、クラウド環境では k8sの type  `LoadBalancer`_ を用いたクラウドネイティブな外部向けロードバランサー機能を利用する想定となります。
 
 .. _MetalLB: https://metallb.universe.tf/
 .. _LoadBalancer: https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer
