@@ -23,14 +23,14 @@ NGINX Plus のインストール
       もし、Puttyがサーバのホスト鍵に関する警告を示した場合、接続のため **Yes** をクリックしてください
       これは、ラボ環境の各ホストでユニークなhost keyを生成するため生じるものです
 
-#. Curl コマンドを実行し、NGINX Controllerのログインに必要なCookie情報を取得します。ログインユーザとしてAdmin権限の``Peter Parker``でログインします
+#. Curl コマンドを実行し、NGINX Controllerのログインに必要なCookie情報を取得します。ログインユーザとしてAdmin権限の ``Peter Parker`` でログインします
 
    .. code-block:: bash
    
       $ curl -k -c cookie.txt -X POST --url 'https://10.1.1.5/api/v1/platform/login' --header 'Content-Type: application/json' --data '{"credentials": {"type": "ACTIVE_DIRECTORY","providerName":"ad-acmefinancial-net", "username": "peter@acmefinancial.net","password": "Peter123!@#"}}'
       $ curl -k -b cookie.txt -c cookie.txt -X GET --url 'https://10.1.1.5/api/v1/platform/login'
 
-#. NGINX Plus インストールに利用する証明書と鍵を取得します。
+#. NGINX Plus インストールに利用する証明書と鍵を取得します
 
    .. code-block:: bash
    
