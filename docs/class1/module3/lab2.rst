@@ -59,7 +59,7 @@ Critical Analytics
    .. NOTE::
       NGINX Controller insntaceはこのラボで"Controller Application Security (CAS)"を利用しています
 
-#.  画面左上のNavigation Barを選択し、表示されるドロップダウンリストから**Services**を開きます
+#.  画面左上のNavigation Barを選択し、表示されるドロップダウンリストから **Services** を開きます
 
    .. image:: ../media/Tile-Services.png
       :width: 200
