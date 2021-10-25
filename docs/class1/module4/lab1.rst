@@ -168,7 +168,7 @@ Security Events を確認する
     .. image:: ./media/TradingMainCASComponentEventsRequest.png
 
 #. クロームで新しいタプを開き、開発者ツールを有効にした状態でアプリケーションにアクセスしてください
-   URLは `http://trading.acmefinancial.net/wp-admin/admin-post.php?do_reset_wordpress`` です。このリクエストでユーザにどの様に見えるか、動作を確認してください。
+   URLは ``http://trading.acmefinancial.net/wp-admin/admin-post.php?do_reset_wordpress`` です。このリクエストでユーザにどの様に見えるか、動作を確認してください。
    何が見えましたでしょうか？ レスポンスに "Support ID" が確認できます。これはセキュリティログの詳細にも記録されるこのイベントを示すIDです
 
     .. image:: ./media/TradingMainCASComponentBlocked.png
