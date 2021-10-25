@@ -1,8 +1,8 @@
-Lab 3 - Advanced ADC Programmability Features
+Lab 3 - ADC によるより詳細なトラフィック制御機能(Programmability)
 ######################################################
 
 このラボのゴールは、現在NGINX Controllerで利用可能な "advanced ADC" 機能を確認します。
-以前、ｍこれらの機能はNGINX Controllerで対応できず、NGINX Insntanceを個別に設定した場合の設定のみで利用が可能だった内容です
+以前、これらの機能はNGINX Controllerで対応できず、NGINX Insntanceを個別に設定した場合の設定のみで利用が可能だった内容です
 
 .. IMPORTANT::
     想定時間: 10分
@@ -174,16 +174,16 @@ Request Header 変更機能を設定する
 
    .. NOTE::
      "echo" Appが応答するJSONデータは、HTTPリクエストに追加されたヘッダーの情報が表示されます。
-     このヘッダー追加機能により、どのNGINX Plusインスタンスが通信の操作を行ったか示すHTTP Headerの追加をすることが可能です。
+     このヘッダー追加機能により、どのNGINX Plusインスタンスが通信の操作を行ったか示すHTTP Headerの追加をすることが可能です
      リクエストやレスポンスのHTTP Headerを追加・削除するなど、アプリケーションに求められる内容を実施することが可能です
 
 追加情報
 --------------------
 
-"Programmability" セクションでは、URIリダイレクト、URI Rewrite、リクエストヘッダー操作、レスポンスヘッダー操作を行うことができます。
-これらの機能は、NGINXの`rewrite`_モジュールによって実現しています。より詳細な情報についてはmoduleのドキュメントを参照してください。
+"Programmability" セクションでは、URIリダイレクト、URI Rewrite、リクエストヘッダー操作、レスポンスヘッダー操作を行うことができます
+これらの機能は、NGINXの`rewrite`_モジュールによって実現しています。より詳細な情報についてはmoduleのドキュメントを参照してください
 
-NGINX REGEX validator は作成した正規表現を確認するのに便利です。こちらの記事を参照ください(`regex`_ blog)。また、NGINXが使うPerlの正規表現(PCRE)も理解に役立ちます。合わせてご確認ください。
+NGINX REGEX validator は作成した正規表現を確認するのに便利です。こちらの記事を参照ください(`regex`_ blog)。また、NGINXが使うPerlの正規表現(PCRE)も理解に役立ちます。合わせてご確認ください
 
 .. _rewrite: http://nginx.org/en/docs/http/ngx_http_rewrite_module.html
 .. _regex: https://www.nginx.com/blog/regular-expression-tester-nginx/
