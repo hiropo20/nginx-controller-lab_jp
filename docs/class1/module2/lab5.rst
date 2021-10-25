@@ -99,7 +99,7 @@ Component を作成する
 #. echoapp を利用します: 右上の "Create Component" ボタンをクリックし、"Components" セクションを開きます
 
    .. image:: ./media/M2L5PlusCreateComponent.png
-      :width: 800
+      :width: 200
 
 #. 項目に以下の内容を入力し、ドロップダウンリストより **Gateway Refs** の内容を選択してください
 
