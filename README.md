@@ -17,14 +17,27 @@ Release
 |2021/10/19| NGINX Plusインスタンス追加手順追加。その他アップデート|
 |2021/10/18| 1.0.57の内容を日本語化。本レポジトリはこの内容を基準とします|
 
-本Lab Guide 表示用 Container Setup 方法
+本Lab Guide HTML 生成 Container の実行方法
 -----
 
 1. Download または `git clone` により 本 nginx-controller-lab のファイルを取得してください
 1. Docker CE (https://docs.docker.com/engine/installation/) をダウンロード＆インストール
 1. `./containthedocs-build.sh` を用いてサンプルドキュメントを作成。 初回作成時にはDocker Hubよりコンテナイメージ(~1GB)がダウンロードされます
-1. `docs/_build/html/index.html` の内容をWebブラウザで開いてください
+1. `docs/_build/html/index.html` のファイルが生成されます。生成された内容をWebブラウザで開いてください
 
+本Lab Guide 非表示用 Container の実行方法
+-----
+
+```
+docker-composeを利用しますので、予めホストにセットアップください
+```
+
+1. `ls ./docs/_build/html/index.html` を実行し、正しく `index.html` が生成されていることを確認してください
+1. `docker-compose up -d` で guide 用コンテナを起動してください
+1. `Port 80` でサービスを公開します。正しくアクセスできることを確認してください
+   
+コンテナの停止
+1. コンテナを停止する場合、`docker-compose down` を実行してください
 
 Build Scripts (Reffer to Original Lab Guide)
 -------------
