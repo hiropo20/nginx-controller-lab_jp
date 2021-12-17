@@ -144,8 +144,10 @@ NGINX PlusのインスタンスをNGINX Controllerに追加する
       :width: 800
 
 
-(Optional) NGINX PlusをNGINX Controllerの管理対象として追加した際に以下のような変更が行われます。参考情報としてご確認ください。
+(Optional) NGINX Controllerの管理対象とするNGINX Plusの設定
 ----
+
+NGINX PlusをNGINX Controllerの管理対象として追加した際に以下のような変更が行われます。参考情報としてご確認ください。
 
 #. NGINX Plusに対しNGINX Controller Agentが正しくインストールできた場合、以下のようにモジュールが配置されます
 
