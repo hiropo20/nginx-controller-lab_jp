@@ -105,10 +105,13 @@ Lab 2 - NGINX Controller の冗長化
       これは、ラボ環境の各ホストでユニークなhost keyを生成するため生じるものです
 
 #. installerディレクトリより、install.sh コマンドを実行してください。そしてプロンプトの表示に対し "y" ("yes" の意味) を入力してください
+   解凍するファイル名はディレクトリに保存しているものと一致している事を確認してください。異なる場合、適宜ファイル名を変更ください
+   (こちらの操作はubuntuユーザで行います。ファイルはホームディレクトリ/home/ubuntuに配置しております)
 
    .. code-block:: bash
 
       $ cd controller-installer/
+      $ tar zxvf controller-installer-3.20.0.tar.gz
       $ ./install.sh --join-key {{base64 encoded key}}
 
    .. image:: ./media/M1L2InstallCommand.png
