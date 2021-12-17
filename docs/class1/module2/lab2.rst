@@ -1,8 +1,8 @@
 Lab 2 - ADC App 作成のプログラマビリティの確認
 ################################################
 
-このラボのゴールはNGINX Controller APIを用いたApp Componentの作成です。
-このラボはお客様環境で自動化ツールやCI/CD Pipelineで実施するプログラムによるデプロイのProxyとしてPostmanを利用します。
+| このラボのゴールはNGINX Controller APIを用いたApp Componentの作成です。
+| このラボはお客様環境で自動化ツールやCI/CD Pipelineで実施するプログラムによるデプロイのProxyとしてPostmanを利用します。
 
 .. IMPORTANT::
     想定時間: 5分
