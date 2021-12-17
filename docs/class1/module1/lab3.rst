@@ -144,9 +144,10 @@ NGINX PlusのインスタンスをNGINX Controllerに追加する
       :width: 800
 
 
-#. (参考) NGINX PlusをNGINX Controllerの管理対象として追加した際に以下のような変更が行われます。参考情報としてご確認ください。
+(Optional) NGINX PlusをNGINX Controllerの管理対象として追加した際に以下のような変更が行われます。参考情報としてご確認ください。
+----
 
-1. NGINX Plusに対しNGINX Controller Agentが正しくインストールできた場合、以下のようにモジュールが配置されます
+#. NGINX Plusに対しNGINX Controller Agentが正しくインストールできた場合、以下のようにモジュールが配置されます
 
    .. code-block:: bash
    
@@ -156,7 +157,7 @@ NGINX PlusのインスタンスをNGINX Controllerに追加する
       ngx_http_f5_metrics_module.so 
       ngx_stream_f5_metrics_module.so
 
-2. | NGINX Controller より管理するNGINX Plusの設定はすべてNGINX Controller経由で管理されます。
+#. | NGINX Controller より管理するNGINX Plusの設定はすべてNGINX Controller経由で管理されます。
    | module2 で案内する手順により対象のNGINX Plusに対し設定を反映する際に、様々な管理用設定も含まれたファイルが生成されます
    | 以下が自動的に設定される監視に関する設定内容となります
 
