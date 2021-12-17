@@ -25,17 +25,23 @@ Release
 1. `./containthedocs-build.sh` を用いてサンプルドキュメントを作成。 初回作成時にはDocker Hubよりコンテナイメージ(~1GB)がダウンロードされます
 1. `docs/_build/html/index.html` のファイルが生成されます。生成された内容をWebブラウザで開いてください
 
-本Lab Guide 非表示用 Container の実行方法
+本Lab Guide 表示用 Container の実行
 -----
 
-```
-docker-composeを利用しますので、予めホストにセットアップください
-```
+`docker-composeを利用しますので、予めホストにセットアップください`
 
 1. `ls ./docs/_build/html/index.html` を実行し、正しく `index.html` が生成されていることを確認してください
-1. `docker-compose up -d` で guide 用コンテナを起動してください
-1. `Port 80` でサービスを公開します。正しくアクセスできることを確認してください
-   
+2. `docker-compose up -d` で guide 用コンテナを起動してください
+3. `Port 80` でサービスを公開します。正しくアクセスできることを確認してください
+
+本Lab Guide 表示内容の更新
+-----
+
+1. `git pull` を実行し、内容を更新
+2. `./containthedocs-build.sh` を実行し、コンテンツをHTMLに変換
+3. `docker-compose restart` を実行し、更新内容をコンテナに反映
+
+
 コンテナの停止
 1. コンテナを停止する場合、`docker-compose down` を実行してください
 
