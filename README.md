@@ -43,6 +43,7 @@ Release
 
 
 コンテナの停止
+-----
 1. コンテナを停止する場合、`docker-compose down` を実行してください
 
 Build Scripts (Reffer to Original Lab Guide)
