@@ -23,13 +23,12 @@ Postmanを用いて、Component の Security Settings を更新する
 
 #. jumphostで **Postman** を開きます。**NGINX Controller 3.x** Collection を開きます
 
-   .. image:: ./media/PMcollNatasha.png
+   .. image:: ../media/PMcoll.png
       :width: 400
-
 
 #. **Common Tasks**、 **User Logon** を開き **Login to Controller – Natasha Romanoff - AD** を選択します
 
-   .. image:: ../media/PMcoll2.png
+   .. image:: ./media/PMcollNatasha.png
       :width: 400
 
 #. Postman **Send** を選択します
