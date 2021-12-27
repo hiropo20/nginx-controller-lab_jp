@@ -69,12 +69,12 @@ Gatewayを作成する
    .. image:: ./media/M2L5GWDialogue.png
       :width: 600
 
-#. **Placements** で、"Development NGINX West 03 (CAS)” を対象インスタンスとして選択します
+#. **Placements** で、``Development NGINX West 03 (CAS)`` を対象インスタンスとして選択します
 
    .. image:: ./media/M2L1Place.png
       :width: 700
 
-#. **Placements** で、"10.1.20.213” を待ち受けIPアドレスとして入力して下さい
+#. **Placements** で、``10.1.20.213`` を待ち受けIPアドレスとして入力して下さい
 
    .. image:: ./media/M2L5Place.png
       :width: 700
@@ -145,7 +145,7 @@ Component を作成する
 Listen IP Component をテストする
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. ``jumphost-``1 のChromeで新しいタブを開き、 "Developer Tools" を有効にしてください
+#. ``jumphost-1`` のChromeで新しいタブを開き、 "Developer Tools" を有効にしてください
 
    .. image:: ./media/M2L1DevTools.png
       :width: 800
