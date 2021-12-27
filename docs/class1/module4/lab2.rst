@@ -23,7 +23,7 @@ Postmanを用いて、Component の Security Settings を更新する
 
 #. jumphostで **Postman** を開きます。**NGINX Controller 3.x** Collection を開きます
 
-   .. image:: ../media/PMcoll.png
+   .. image:: ./media/PMcollNatasha.png
       :width: 400
 
 
