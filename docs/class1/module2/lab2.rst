@@ -59,6 +59,7 @@ Postmanを利用して Component のデプロイ
    .. NOTE::
       NGINX Controllerが "204 No Content" と 認証Cookie情報を応答します
       PostmanはこのCookieを以降のサブリクエストの認証情報として利用します
+      (以下の例は、次の操作でRequest欄「・・・」＞Cookies＞MANAGE COOKIESよりsession欄を開いた結果です)
 
    .. image:: ./media/M2L2PMcookie.png
       :width: 400
